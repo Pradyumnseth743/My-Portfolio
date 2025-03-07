@@ -1,32 +1,44 @@
 * {
     text-decoration: none;
   }
+  nav {
+    background: rgba(0, 0, 0, 0.3);
+    width: max-content;
+    display: flex;
+    gap: 0.8rem;
+    padding: 0.7rem 1.7rem;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    border-radius: 3rem;
+    backdrop-filter: blur(15px);
+  }
+  
   nav a {
     background: transparent;
     padding: 0.9rem;
     border-radius: 50%;
     display: flex;
-    color: var(--color-light);
     font-size: 1.1rem;
+    color: var(--color-light);
+    outline: none; /* Removes blue square shadow */
+    -webkit-tap-highlight-color: transparent; /* Removes mobile tap effect */
     transition: background 0.3s ease;
-    outline: none; /* Removes default focus outline */
-    -webkit-tap-highlight-color: transparent; /* No mobile tap highlight */
-    user-select: none; /* Prevents accidental text selection */
   }
   
-  nav a:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  
-  nav a:active {
-    outline: none;
-    box-shadow: none;
+  nav a:hover {
+    background: rgba(0, 0, 0, 0.3);
   }
   
   nav a.active {
     background: var(--color-primary);
     color: var(--color-bg);
     transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  nav a:focus {
+    outline: none; /* Removes click shadow */
   }
   

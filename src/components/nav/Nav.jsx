@@ -17,10 +17,7 @@ const Nav = () => {
           }
         });
       },
-      {
-        threshold: 0.3, // Adjusts how early the observer triggers
-        rootMargin: "-50px", // Triggers before the section fully enters
-      }
+      { threshold: 0.6 }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -30,44 +27,48 @@ const Nav = () => {
     };
   }, []);
 
-  const handleClick = (hash) => {
+  const handleClick = (hash, e) => {
+    e.preventDefault(); // Prevent default scrolling
     setActiveNav(hash);
-    window.location.hash = hash; // This will scroll the page
+    document.querySelector(hash).scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   return (
     <nav>
       <a
         href="#"
-        onClick={() => handleClick("#")}
+        onClick={(e) => handleClick("#", e)}
         className={activeNav === "#" ? "active" : ""}
       >
         <AiOutlineHome />
       </a>
       <a
         href="#about"
-        onClick={() => handleClick("#about")}
+        onClick={(e) => handleClick("#about", e)}
         className={activeNav === "#about" ? "active" : ""}
       >
         <AiOutlineUser />
       </a>
       <a
         href="#experience"
-        onClick={() => handleClick("#experience")}
+        onClick={(e) => handleClick("#experience", e)}
         className={activeNav === "#experience" ? "active" : ""}
       >
         <BiBook />
       </a>
       <a
         href="#services"
-        onClick={() => handleClick("#services")}
+        onClick={(e) => handleClick("#services", e)}
         className={activeNav === "#services" ? "active" : ""}
       >
         <RiServiceLine />
       </a>
       <a
         href="#contact"
-        onClick={() => handleClick("#contact")}
+        onClick={(e) => handleClick("#contact", e)}
         className={activeNav === "#contact" ? "active" : ""}
       >
         <BiMessageSquareDetail />
