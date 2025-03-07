@@ -34,11 +34,15 @@ nav a{
 nav a:hover{
     background: rgb(0, 0, 0,0.3);
 }
-
+nav a:active {
+    outline: none;                  /* Removes tap focus on active click */
+    box-shadow: none;
+  }
 nav a.active{
     background: var(--color-primary);
     color: var(--color-bg);
     transition: color 0.3s ease;
+    
 }
 nav a:focus {
     outline: none;                  /* Removes outline on focus */
