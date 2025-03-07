@@ -2,6 +2,10 @@
     text-decoration: none;
   }
   
+  a, a:link, a:visited {
+    text-decoration: none !important;
+  }
+  
 header{
     height: 115vh;
     padding-top: 3rem;
