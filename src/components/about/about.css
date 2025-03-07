@@ -18,6 +18,8 @@
 }
 
 .about__me-image{
+    margin-top: 4rem;
+    margin-bottom: 4rem;
     border-radius: 2rem;
     overflow: hidden;
     transform: rotate(10deg);
