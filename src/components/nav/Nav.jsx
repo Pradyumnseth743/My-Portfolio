@@ -14,7 +14,7 @@ const Nav = () => {
       let current = "#";
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 200; // Adjust offset for better timing
+        const sectionTop = section.offsetTop - 200; // Adjust Offset
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -26,7 +26,7 @@ const Nav = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial trigger
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -34,9 +34,10 @@ const Nav = () => {
   }, []);
 
   const handleNavClick = (id, e) => {
-    e.preventDefault();
+    e.preventDefault(); // Stop default anchor action
     setActiveNav(id);
-    document.querySelector(id).scrollIntoView({
+    window.scrollTo({
+      top: id === "#" ? 0 : document.querySelector(id).offsetTop - 100,
       behavior: "smooth",
     });
     setTimeout(() => {
