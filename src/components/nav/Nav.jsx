@@ -14,7 +14,7 @@ const Nav = () => {
       let current = "#";
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 200; // Detect section 200px before reaching
+        const sectionTop = section.offsetTop - 200; // Adjust offset for better timing
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -26,7 +26,7 @@ const Nav = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Call it once on page load
+    handleScroll(); // Initial trigger
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -39,7 +39,9 @@ const Nav = () => {
     document.querySelector(id).scrollIntoView({
       behavior: "smooth",
     });
-    e.currentTarget.blur(); // Remove blue shadow on tap
+    setTimeout(() => {
+      e.currentTarget.blur(); // Remove shadow
+    }, 100);
   };
 
   return (
