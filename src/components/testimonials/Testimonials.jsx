@@ -47,6 +47,10 @@ const data = [
 ];
 
 const Testimonials = () => {
+   // Force Swiper to recalculate layout on component mount
+   useEffect(() => {
+    window.dispatchEvent(new Event("resize"));
+  }, []);
   return (
     <section style={{marginTop:"4rem"}} id='testimonials'>
       <h5>Services Offer</h5>
@@ -61,9 +65,10 @@ const Testimonials = () => {
   spaceBetween={40}
   slidesPerView={1}
   pagination={{ clickable: true }}
-  centeredSlides={true}  /* Center the slides */
-  loop={true}           /* Infinite loop to avoid glitches */
-  style={{ width: "100%", overflow: "hidden" }} /* Force 100% width */
+  centeredSlides={true}
+  loop={true}
+  style={{ width: "100%", overflow: "hidden" }}
+  onSwiper={(swiper) => swiper.update()} /* Force Swiper to recalculate layout */
         >
 
         {
