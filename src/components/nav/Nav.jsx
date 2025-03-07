@@ -28,12 +28,15 @@ const Nav = () => {
   }, []);
 
   const handleClick = (hash, e) => {
-    e.preventDefault(); // Prevent default scrolling
+    e.preventDefault();
     setActiveNav(hash);
     document.querySelector(hash).scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
+
+    // Remove focus effect after click
+    e.currentTarget.blur();
   };
 
   return (

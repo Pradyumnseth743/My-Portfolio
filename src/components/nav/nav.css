@@ -1,19 +1,16 @@
-* {
-    text-decoration: none;
-  }
-  nav {
+nav {
     background: rgba(0, 0, 0, 0.3);
     width: max-content;
-    display: flex;
-    gap: 0.8rem;
     padding: 0.7rem 1.7rem;
     position: fixed;
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10;
+    display: flex;
+    gap: 0.8rem;
     border-radius: 3rem;
     backdrop-filter: blur(15px);
+    z-index: 10;
   }
   
   nav a {
@@ -23,9 +20,9 @@
     display: flex;
     font-size: 1.1rem;
     color: var(--color-light);
-    outline: none; /* Removes blue square shadow */
-    -webkit-tap-highlight-color: transparent; /* Removes mobile tap effect */
-    transition: background 0.3s ease;
+    outline: none; /* Removes outline */
+    -webkit-tap-highlight-color: transparent; /* Removes tap effect */
+    transition: background 0.3s ease, color 0.3s ease;
   }
   
   nav a:hover {
@@ -35,10 +32,9 @@
   nav a.active {
     background: var(--color-primary);
     color: var(--color-bg);
-    transition: background 0.3s ease, color 0.3s ease;
   }
   
   nav a:focus {
-    outline: none; /* Removes click shadow */
+    outline: none; /* Removes focus outline */
   }
   
