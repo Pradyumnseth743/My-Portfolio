@@ -5,6 +5,8 @@ import AVTR2 from "../../assets/pd33.jpg";
 import AVTR3 from "../../assets/pd4.jpg";
 import AVTR4 from "../../assets/pd5.jpg";
 import AVTR5 from "../../assets/pd6.jpeg";
+import React, { useEffect } from "react";
+
 
 import { Pagination } from 'swiper/modules';
 
