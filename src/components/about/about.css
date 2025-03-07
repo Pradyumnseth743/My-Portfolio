@@ -9,6 +9,8 @@
 }
 
 .about__me{
+    margin-bottom: 5rem;
+    margin-top: 2rem;
     width: 100%;
     aspect-ratio: 1/1;
     border-radius: 2rem;
