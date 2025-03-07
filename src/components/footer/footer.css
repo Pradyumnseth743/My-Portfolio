@@ -21,7 +21,7 @@ ul {
   
   ul li a {
     text-decoration: none; /* Removes underline */
-    color: inherit;        /* Keeps text color same as parent */
+    /* color: inherit;       /* Keeps text color same as parent */
     transition: color 0.3s ease; /* Smooth color change effect */
   }
   
