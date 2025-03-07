@@ -1,11 +1,11 @@
-// import React from "react";
+import React from "react";
 import "./testimonials.css";
 import AVTR1 from "../../assets/pd2.jpg";
 import AVTR2 from "../../assets/pd33.jpg";
 import AVTR3 from "../../assets/pd4.jpg";
 import AVTR4 from "../../assets/pd5.jpg";
 import AVTR5 from "../../assets/pd6.jpeg";
-import React, { useEffect } from "react";
+// import React, { useEffect } from "react";
 
 
 import { Pagination } from 'swiper/modules';
@@ -49,29 +49,18 @@ const data = [
 ];
 
 const Testimonials = () => {
-   // Force Swiper to recalculate layout on component mount
-   useEffect(() => {
-    window.dispatchEvent(new Event("resize"));
-  }, []);
+  
   return (
     <section style={{marginTop:"4rem"}} id='testimonials'>
       <h5>Services Offer</h5>
       <h2>Expertise</h2>
 
       <Swiper className="container testimonials__container" 
-      // modules={[ Pagination]}
-      //   spaceBetween={40}
-      //   slidesPerView={1}
-      //   pagination={{ clickable: true }}
-      modules={[Pagination]}
-  spaceBetween={40}
-  slidesPerView={1}
-  pagination={{ clickable: true }}
-  centeredSlides={true}
-  loop={true}
-  style={{ width: "100%", overflow: "hidden" }}
-  onSwiper={(swiper) => swiper.update()} /* Force Swiper to recalculate layout */
-        >
+      modules={[ Pagination]}
+        spaceBetween={40}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+      >
 
         {
           data.map(({ avatar, name, review }, index) => {
