@@ -34,7 +34,7 @@ const About = () => {
               <small>10+ Completed</small>
             </article>
           </div>
-          <p>Greetings, I'm Pradyumn Seth, a recent Computer Science and Engineering 
+          <p style={{ textAlign: "justify" }}>Greetings, I'm Pradyumn Seth, a recent Computer Science and Engineering 
             graduate of 2023. As a Computer Science Graduate and Software Developer, I'm immersed in the 
             world of coding intricacies and innovative solutions. My palette includes crafting 
             immersive web experiences and sculpting data structures for optimized performance. 
