@@ -37,11 +37,11 @@ const Nav = () => {
   return (
     <div>
       <nav>
-        <a href='#'  onClick={()=>setActiveNav('#')} className={activeNav==='#'?'active':''}><AiOutlineHome/></a>
-        <a href='#about' onClick={()=>setActiveNav('#about')}  className={activeNav==='#about'?'active':''}><AiOutlineUser/></a>
-        <a href='#experience' onClick={()=>setActiveNav('#experience')} className={activeNav==='#experience'?'active':''}><BiBook/></a>
-        <a href='#services' onClick={()=>setActiveNav('#services')} className={activeNav==='#services'?'active':''}><RiServiceLine/></a>
-        <a href='#contact' onClick={()=>setActiveNav('#contact')} className={activeNav==='#contact'?'active':''}><BiMessageSquareDetail/></a>
+        <a href='#'  onClick={(e)=>{setActiveNav('#');e.currentTarget.blur(); }} className={activeNav==='#'?'active':''}><AiOutlineHome/></a>
+        <a href='#about' onClick={(e)=>{setActiveNav('#about');e.currentTarget.blur(); }}  className={activeNav==='#about'?'active':''}><AiOutlineUser/></a>
+        <a href='#experience' onClick={(e)=>{setActiveNav('#experience');e.currentTarget.blur(); }} className={activeNav==='#experience'?'active':''}><BiBook/></a>
+        <a href='#services' onClick={(e)=>{setActiveNav('#services');e.currentTarget.blur(); }} className={activeNav==='#services'?'active':''}><RiServiceLine/></a>
+        <a href='#contact' onClick={(e)=>{setActiveNav('#contact');e.currentTarget.blur(); }} className={activeNav==='#contact'?'active':''}><BiMessageSquareDetail/></a>
       </nav>
     </div>
   )
