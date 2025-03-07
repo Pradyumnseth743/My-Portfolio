@@ -3,7 +3,7 @@ import './services.css';
 import {BiCheck} from 'react-icons/bi';
 const Services = () => {
   return (
-    <section id='services'>
+    <section style={{marginTop:"4rem"}} id='services'>
       <h5>Academic Journey</h5>
       <h2>Education</h2>
 

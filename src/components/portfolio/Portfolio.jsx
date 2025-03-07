@@ -77,7 +77,7 @@ const data=[
 ]
 const Portfolio = () => {
   return (
-    <section id='portfolio'>
+    <section style={{marginTop:"4rem"}} id='portfolio'>
       <h5>My Recent Work</h5>
       <h2>Portfolio</h2>
 
