@@ -13,7 +13,24 @@ footer{
 footer a{
     color: var(--color-bg);
 }
-
+ul {
+    list-style: none; /* Removes bullet points */
+    padding: 0;       /* Removes extra padding */
+    margin: 0;        /* Removes extra margin */
+  }
+  
+  ul li a {
+    text-decoration: none; /* Removes underline */
+    color: inherit;        /* Keeps text color same as parent */
+    transition: color 0.3s ease; /* Smooth color change effect */
+  }
+  
+  ul li a:active,
+  ul li a:focus {
+    color: inherit; /* Prevents color change on click */
+    outline: none;  /* Removes outline on focus */
+  }
+  
 .footer__logo{
     font-size: 2rem;
     font-weight: 500;
