@@ -9,6 +9,29 @@ import { useState } from 'react';
 
 const Nav = () => {
   const [activeNav,setActiveNav]=useState('#');
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveNav(`#${entry.target.id}`);
+          }
+        });
+      },
+      { threshold: 0.6 } // 60% of the section must be visible
+    );
+  
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+  
+    return () => {
+      sections.forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
   return (
     <div>
       <nav>
