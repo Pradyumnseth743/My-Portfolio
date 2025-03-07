@@ -48,6 +48,8 @@
 .service__list-icon{
     color: var(--color-primary);
     margin-top: 2px;
+    font-size: 1rem;           /* Fixed icon size */
+    flex-shrink: 0;              /* Prevent icon from shrinking */
 }
 span{color:var(--color-primary)}
 .service__list p{
