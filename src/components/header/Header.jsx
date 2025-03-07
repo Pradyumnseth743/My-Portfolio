@@ -7,9 +7,9 @@ const Header = () => {
   return (
     <header>
         <div className="container header__container">
-        <h5>Hello I'm</h5>
-        <h1 style={{fontFamily:"Copperplate Gothic"}}>Pradyumn Seth</h1>
-        <h5 className="text-light">Software Developer</h5>
+        <h5 style={{ margin:"0px" }}>Hello I'm</h5>
+        <h1 style={{fontFamily:"Copperplate Gothic",margin:"0px"}}>Pradyumn Seth</h1>
+        <h5 style={{ margin:"0px" }} className="text-light">Software Developer</h5>
         <CTA/>
         <HeaderSocials/>
         <div className='me'>
