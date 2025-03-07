@@ -21,17 +21,15 @@ nav {
     color: var(--color-light);
     -webkit-tap-highlight-color: transparent;
     transition: background 0.3s ease, color 0.3s ease;
-    outline: none;
-  box-shadow: none;
-  user-select: none; /* Text Select Na Ho */
   }
   
-
-  
+  /* nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+   */
   nav a.active {
     background: var(--color-primary);
     color: var(--color-bg);
-    transition: box-shadow 0.3s ease;
   }
   
  
@@ -40,8 +38,6 @@ nav {
   }
   nav a:hover {
     box-shadow: 0 0 15px var(--color-primary);
-    
+    transition: box-shadow 0.3s ease;
   }
       
-
-  
