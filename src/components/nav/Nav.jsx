@@ -10,21 +10,26 @@ const Nav = () => {
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveNav(`#${entry.target.id}`);
-          }
-        });
-      },
-      { threshold: 0.5 } // 50% of section visible
-    );
+    const handleScroll = () => {
+      let current = "#";
 
-    sections.forEach((section) => observer.observe(section));
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 200; // Detect section 200px before reaching
+        const sectionHeight = section.clientHeight;
+
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          current = `#${section.id}`;
+        }
+      });
+
+      setActiveNav(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call it once on page load
 
     return () => {
-      sections.forEach((section) => observer.unobserve(section));
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -34,9 +39,7 @@ const Nav = () => {
     document.querySelector(id).scrollIntoView({
       behavior: "smooth",
     });
-
-    // Remove blue click shadow glitch
-    e.currentTarget.blur();
+    e.currentTarget.blur(); // Remove blue shadow on tap
   };
 
   return (
