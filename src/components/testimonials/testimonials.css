@@ -72,9 +72,7 @@
   .swiper-wrapper {
     width: 100% !important; 
   }
-  * {
-    outline: 1px solid red;
-  }
+
     
 /* /=================Media queries (medium devices) ====================/ */
 @media screen and (max-width: 1024px){
