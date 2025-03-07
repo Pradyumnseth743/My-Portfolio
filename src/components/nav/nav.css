@@ -24,8 +24,12 @@ nav {
     outline: none;
   box-shadow: none;
   user-select: none; /* Text Select Na Ho */
+
   }
   
+  nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
   
   nav a.active {
     background: var(--color-primary);
