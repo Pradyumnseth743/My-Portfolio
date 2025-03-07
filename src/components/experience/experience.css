@@ -39,12 +39,15 @@
 
 .experience__details{
     display: flex;
+    align-items: center;
     gap:1rem;
 }
 
 .experience__details-icons{
     margin-top: 6px;
     color: var(--color-primary);
+    font-size: 1.5rem;           /* Fixed icon size */
+    flex-shrink: 0;              /* Prevent icon from shrinking */
 }
 
 /* /=================Media queries (medium devices) ====================/ */
