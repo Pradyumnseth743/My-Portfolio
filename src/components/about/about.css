@@ -52,6 +52,7 @@
 }
 .about__card h5{
     font-size: 0.95rem;
+    margin:0px;
 }
 
 .about__card small{
