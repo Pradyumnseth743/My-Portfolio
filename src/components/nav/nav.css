@@ -25,6 +25,8 @@ nav a{
     display: flex;
     color: var(--color-light);
     font-size: 1.1rem;
+    outline: none;                  /* Removes default browser focus outline */
+  -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile devices */
 }
 
 nav a:hover{
@@ -35,3 +37,7 @@ nav a.active{
     background: var(--color-primary);
     color: var(--color-bg);
 }
+nav a:focus {
+    outline: none;                  /* Removes outline on focus */
+    box-shadow: none;               /* Removes square shadow */
+  }
