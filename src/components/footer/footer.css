@@ -1,3 +1,7 @@
+* {
+    text-decoration: none;
+  }
+  
 footer{
     background: var(--color-primary);
     padding: 3rem 0;

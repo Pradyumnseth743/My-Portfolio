@@ -1,3 +1,7 @@
+* {
+    text-decoration: none;
+  }
+  
 .about__container{
     display: grid;
     grid-template-columns: 35% 50%;
