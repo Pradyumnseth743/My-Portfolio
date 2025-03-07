@@ -1,6 +1,5 @@
 nav {
     background: rgba(0, 0, 0, 0.3);
-    width: max-content;
     padding: 0.7rem 1.7rem;
     position: fixed;
     bottom: 2rem;
@@ -20,8 +19,8 @@ nav {
     display: flex;
     font-size: 1.1rem;
     color: var(--color-light);
-    outline: none; /* Removes outline */
-    -webkit-tap-highlight-color: transparent; /* Removes tap effect */
+    outline: none; /* Removes focus outline */
+    -webkit-tap-highlight-color: transparent; /* Removes tap highlight */
     transition: background 0.3s ease, color 0.3s ease;
   }
   
@@ -35,6 +34,6 @@ nav {
   }
   
   nav a:focus {
-    outline: none; /* Removes focus outline */
+    outline: none; /* Removes the square outline */
   }
   

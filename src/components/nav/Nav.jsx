@@ -9,6 +9,7 @@ const Nav = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -17,7 +18,7 @@ const Nav = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.5 } // 50% of section visible
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -27,15 +28,14 @@ const Nav = () => {
     };
   }, []);
 
-  const handleClick = (hash, e) => {
+  const handleNavClick = (id, e) => {
     e.preventDefault();
-    setActiveNav(hash);
-    document.querySelector(hash).scrollIntoView({
+    setActiveNav(id);
+    document.querySelector(id).scrollIntoView({
       behavior: "smooth",
-      block: "start",
     });
 
-    // Remove focus effect after click
+    // Remove blue click shadow glitch
     e.currentTarget.blur();
   };
 
@@ -43,35 +43,35 @@ const Nav = () => {
     <nav>
       <a
         href="#"
-        onClick={(e) => handleClick("#", e)}
+        onClick={(e) => handleNavClick("#", e)}
         className={activeNav === "#" ? "active" : ""}
       >
         <AiOutlineHome />
       </a>
       <a
         href="#about"
-        onClick={(e) => handleClick("#about", e)}
+        onClick={(e) => handleNavClick("#about", e)}
         className={activeNav === "#about" ? "active" : ""}
       >
         <AiOutlineUser />
       </a>
       <a
         href="#experience"
-        onClick={(e) => handleClick("#experience", e)}
+        onClick={(e) => handleNavClick("#experience", e)}
         className={activeNav === "#experience" ? "active" : ""}
       >
         <BiBook />
       </a>
       <a
         href="#services"
-        onClick={(e) => handleClick("#services", e)}
+        onClick={(e) => handleNavClick("#services", e)}
         className={activeNav === "#services" ? "active" : ""}
       >
         <RiServiceLine />
       </a>
       <a
         href="#contact"
-        onClick={(e) => handleClick("#contact", e)}
+        onClick={(e) => handleNavClick("#contact", e)}
         className={activeNav === "#contact" ? "active" : ""}
       >
         <BiMessageSquareDetail />
