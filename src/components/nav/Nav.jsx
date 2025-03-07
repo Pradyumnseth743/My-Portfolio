@@ -6,17 +6,18 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
+    let isClicked = false;
 
     const handleScroll = () => {
-      if (clicked) return; // Stop observer when user clicks
+      if (isClicked) return; // Agar click hua hai toh scroll observe band
+
       let current = "#";
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 200; // Offset fix
+        const sectionTop = section.offsetTop - 150; // Offset Fix
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -29,12 +30,11 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [clicked]);
+  }, []);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
     setActiveNav(id);
-    setClicked(true);
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 100,
@@ -42,9 +42,8 @@ const Nav = () => {
     });
 
     setTimeout(() => {
-      setClicked(false);
-      e.currentTarget.blur();
-    }, 1500); // Reset clicked after animation
+      window.dispatchEvent(new Event("scroll")); // Force observer to recalculate
+    }, 1500);
   };
 
   return (
