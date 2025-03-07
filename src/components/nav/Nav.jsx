@@ -1,10 +1,12 @@
-import React from 'react'
+// import React from 'react'
 import './nav.css';
 import {AiOutlineHome} from 'react-icons/ai'
 import {AiOutlineUser} from 'react-icons/ai'
 import {BiBook, BiMessageSquareDetail} from 'react-icons/bi'
 import {RiServiceLine} from 'react-icons/ri'
 import { useState } from 'react';
+import React, { useState, useEffect } from "react";
+
 
 
 const Nav = () => {
