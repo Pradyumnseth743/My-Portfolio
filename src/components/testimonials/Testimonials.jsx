@@ -52,10 +52,19 @@ const Testimonials = () => {
       <h5>Services Offer</h5>
       <h2>Expertise</h2>
 
-      <Swiper className="container testimonials__container" modules={[ Pagination]}
-        spaceBetween={40}
-        slidesPerView={1}
-        pagination={{ clickable: true }}>
+      <Swiper className="container testimonials__container" 
+      // modules={[ Pagination]}
+      //   spaceBetween={40}
+      //   slidesPerView={1}
+      //   pagination={{ clickable: true }}
+      modules={[Pagination]}
+  spaceBetween={40}
+  slidesPerView={1}
+  pagination={{ clickable: true }}
+  centeredSlides={true}  /* Center the slides */
+  loop={true}           /* Infinite loop to avoid glitches */
+  style={{ width: "100%", overflow: "hidden" }} /* Force 100% width */
+        >
 
         {
           data.map(({ avatar, name, review }, index) => {

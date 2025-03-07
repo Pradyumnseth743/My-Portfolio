@@ -6,6 +6,10 @@
     padding: 0;
     overflow-x: hidden; /* Stops the entire page from scrolling sideways */
   }
+  section {
+    width: 100%; 
+    overflow-x: hidden; /* Stop horizontal scroll globally */
+  }
   
 .container.testimonials__container{
     /* width: 40%;
@@ -13,6 +17,8 @@
     width: 40%;
   padding-bottom: 4rem;
   overflow: hidden;
+
+  
 }
 .client__avatar{
     width: 4rem;
@@ -50,6 +56,24 @@
     width: 100%; 
     height: 100%; 
     object-fit: cover; /* Prevents image distortion */
+  }
+  .testimonials__container {
+    width: 100%;      /* Full width to avoid extra gaps */
+    max-width: 40rem; /* Optional: Adjust max width */
+    margin: auto;     /* Center the container */
+    overflow: hidden; /* Stop overflow */
+  }
+  
+  .swiper-slide {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+  }
+  .swiper-wrapper {
+    width: 100% !important; 
+  }
+  * {
+    outline: 1px solid red;
   }
     
 /* /=================Media queries (medium devices) ====================/ */
