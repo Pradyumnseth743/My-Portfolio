@@ -6,35 +6,34 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
+  let isClicked = false; // Click Flag
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    let isClicked = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (isClicked) return; // Click Flag On hai to Observer ko Ignore karo
 
-    const handleScroll = () => {
-      if (isClicked) return; // Agar click hua hai toh scroll observe band
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveNav(`#${entry.target.id}`);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
 
-      let current = "#";
+    sections.forEach((section) => observer.observe(section));
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 150; // Offset Fix
-        const sectionHeight = section.clientHeight;
-
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          current = `#${section.id}`;
-        }
-      });
-
-      setActiveNav(current);
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (id, e) => {
+  const handleClick = (id, e) => {
     e.preventDefault();
     setActiveNav(id);
+    isClicked = true; // Flag ON
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 100,
@@ -42,43 +41,43 @@ const Nav = () => {
     });
 
     setTimeout(() => {
-      window.dispatchEvent(new Event("scroll")); // Force observer to recalculate
-    }, 1500);
+      isClicked = false; // Flag Reset
+    }, 1200); // Scroll Animation ke baad Flag Band
   };
 
   return (
     <nav>
       <a
         href="#"
-        onClick={(e) => handleNavClick("#", e)}
+        onClick={(e) => handleClick("#", e)}
         className={activeNav === "#" ? "active" : ""}
       >
         <AiOutlineHome />
       </a>
       <a
         href="#about"
-        onClick={(e) => handleNavClick("#about", e)}
+        onClick={(e) => handleClick("#about", e)}
         className={activeNav === "#about" ? "active" : ""}
       >
         <AiOutlineUser />
       </a>
       <a
         href="#experience"
-        onClick={(e) => handleNavClick("#experience", e)}
+        onClick={(e) => handleClick("#experience", e)}
         className={activeNav === "#experience" ? "active" : ""}
       >
         <BiBook />
       </a>
       <a
         href="#services"
-        onClick={(e) => handleNavClick("#services", e)}
+        onClick={(e) => handleClick("#services", e)}
         className={activeNav === "#services" ? "active" : ""}
       >
         <RiServiceLine />
       </a>
       <a
         href="#contact"
-        onClick={(e) => handleNavClick("#contact", e)}
+        onClick={(e) => handleClick("#contact", e)}
         className={activeNav === "#contact" ? "active" : ""}
       >
         <BiMessageSquareDetail />
