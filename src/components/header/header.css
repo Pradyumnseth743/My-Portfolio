@@ -1,79 +1,79 @@
-/* Reset default styles */
 * {
     text-decoration: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-a {
+  }
+  
+  a, a:link, a:visited {
     text-decoration: none !important;
+  }
+  
+header{
+    height: 115vh;
+    padding-top: 3rem;
+    overflow: hidden;
 }
-
-/* Header Styling */
-header {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.header__container{
     text-align: center;
-    padding: 0 1rem;
-    /* background: var(--background-color, #f4f4f4); */
+    height: 100%;
     position: relative;
 }
 
-.header__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
 
-/* Header Socials */
-.header__socials {
-    display: flex;
+
+/* ================HEADER SOCIALS================= */
+.header__socials{
+    display:flex;
     flex-direction: column;
     align-items: center;
     gap: 0.8rem;
-    position: fixed;
-    left: 1rem;
+    position:absolute;
+    left: 0;
     bottom: 3rem;
 }
 
-.header__socials::after {
+.header__socials::after{
     content: "";
     width: 1px;
     height: 2rem;
-    background: var(--color-primary, #000);
-}
+    background:var(--color-primary);
+} 
 
-/* Call-to-Action Buttons */
-.cta {
-    margin-top: 2rem;
+
+
+
+
+/* /===============CTA================/ */
+
+.cta{
+    margin-top: 2.5rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.2rem;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
-/* Profile Image */
-.me {
-    position: relative;
-    margin: 3rem auto 0 auto;
-    width: 100%;
-    max-width: 20rem;
-    height: auto;
-    aspect-ratio: 1 / 1.2;
-    background: linear-gradient(var(--color-primary, #000), transparent);
+
+
+/* /=============== Me image ================/ */
+
+.me{
+    background: linear-gradient(var(--color-primary),transparent);
+    width: 22rem;
+    /* height: 30rem; */
+    height: 434px;
+    position: absolute;
+    left: calc(50% - 11rem);
+    margin-top: 4rem;
     border-radius: 12rem 12rem 0 0;
     overflow: hidden;
+    /* padding: 4rem 1.5rem 1.5rem 1.5rem; */
+    padding: 3rem 0 0 0;
+    
 }
 
-/* Scroll Down Indicator */
-.scroll__down {
+
+
+/* /=============== scroll down ================/ */
+
+.scroll__down{
     position: absolute;
     right: -2.3rem;
     bottom: 5rem;
@@ -82,44 +82,35 @@ header {
     font-size: 0.9rem;
 }
 
-/* Responsive Adjustments */
-@media screen and (max-width: 1280px) {
-    header {
-        height: 80vh;
+
+
+
+/* /=================Media queries (medium devices) ====================/ */
+@media screen and (max-width: 1024px){
+    header{
+        height: 115vh;
     }
 }
 
-@media screen and (max-width: 1024px) {
-    header {
-        height: 100dvh;
+@media screen and (max-width: 1280px){
+    header{
+        height: 115vh;
     }
+    /* .me{
+        height: 30rem;
+    } */
+    /* #main{
+        height:max-content;
+    } */
 }
 
-@media screen and (max-width: 768px) {
-    .me {
-        max-width: 18rem;
-    }
-    .header__socials {
-        left: 0.5rem;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    header {
-        min-height: 100dvh;
+/* /=================Media queries (small devices) ====================/ */
+@media screen and (max-width: 600px){
+    header{
+        height: 115vh;
     }
     .header__socials, 
-    .scroll__down {
+    .scroll__down{
         display: none;
-    }
-    .me {
-        max-width: 16rem;
-    }
-}
-
-/* Safari Compatibility */
-@supports (-webkit-touch-callout: none) {
-    header {
-        height: 100vh;
     }
 }
