@@ -11,7 +11,6 @@ nav {
     backdrop-filter: blur(15px);
     z-index: 10;
   }
-  
   nav a {
     padding: 0.9rem;
     border-radius: 50%;
@@ -23,9 +22,6 @@ nav {
     user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
-
-
-
   nav a.active {
     background: var(--color-primary);
     color: var(--color-bg);
@@ -35,7 +31,6 @@ nav {
     nav a:hover{
     color: var(--color-light);
   }
-  
   nav a:focus {
     outline: none;
     box-shadow: none;
