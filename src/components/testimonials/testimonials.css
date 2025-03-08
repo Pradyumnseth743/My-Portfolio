@@ -1,12 +1,17 @@
 * {
     text-decoration: none;
-  }
-  .container.testimonials__container{
-    width: 40%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container.testimonials__container {
+    width: 50%;
     padding-bottom: 4rem;
 }
-.client__avatar{
-    width: 4rem;
+
+.client__avatar {
+    width: 5rem;
     aspect-ratio: 1/1;
     overflow: hidden;
     border-radius: 50%;
@@ -14,39 +19,53 @@
     border: 0.4rem solid var(--color-primary-variant);
 }
 
-.testimonial{
+.client__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.testimonial {
     background: var(--color-bg-variant);
     text-align: center;
     padding: 2rem;
     border-radius: 2rem;
     user-select: none;
+    transition: transform 0.3s ease-in-out;
 }
 
-.client__review{
+.testimonial:hover {
+    transform: translateY(-5px);
+}
+
+.client__review {
     color: var(--color-light);
     font-weight: 300;
     display: block;
-    width: 80%;
+    width: 90%;
     margin: 0.8rem auto 0;
+    text-align: center;
+    font-size: 1rem;
 }
 
-.swiper-pagination-clickable .swiper-pagination-bullet{
-    background:var(--color-primary);
+.swiper-pagination-clickable .swiper-pagination-bullet {
+    background: var(--color-primary);
 }
 
-/* /=================Media queries (medium devices) ====================/ */
-@media screen and (max-width: 1024px){
-    .container.testimonials__container{
-        width: 60%;
+/* Medium Devices (Tablets) */
+@media screen and (max-width: 1024px) {
+    .container.testimonials__container {
+        width: 70%;
     }
 }
 
-/* /=================Media queries (small devices) ====================/ */
-@media screen and (max-width: 600px){
-    .container.testimonials__container{
-        width: var(--container-width-sm);
+/* Small Devices (Phones) */
+@media screen and (max-width: 600px) {
+    .container.testimonials__container {
+        width: 90%;
     }
-    .client__review{
-        width: var(--container-width-sm);
+    .client__review {
+        width: 95%;
     }
 }
