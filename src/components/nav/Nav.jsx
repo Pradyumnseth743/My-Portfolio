@@ -6,13 +6,13 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [manualScroll, setManualScroll] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-
+    
     const handleScroll = () => {
-      if (isScrolling) return; // Prevent updating while scrolling manually
+      if (manualScroll) return;
 
       let currentSection = "#";
 
@@ -30,58 +30,36 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolling]);
+  }, [manualScroll]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
     setActiveNav(id);
-    setIsScrolling(true);
+    setManualScroll(true);
 
     window.scrollTo({
-      top: id === "#" ? 0 : document.querySelector(id).offsetTop - 100,
+      top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
 
-    setTimeout(() => {
-      setIsScrolling(false); // Allow scroll update after animation
-    }, 800);
+    setTimeout(() => setManualScroll(false), 800);
   };
 
   return (
     <nav>
-      <a
-        href="#"
-        onClick={(e) => handleNavClick("#", e)}
-        className={activeNav === "#" ? "active" : ""}
-      >
+      <a href="#" onClick={(e) => handleNavClick("#", e)} className={activeNav === "#" ? "active" : ""}>
         <AiOutlineHome />
       </a>
-      <a
-        href="#about"
-        onClick={(e) => handleNavClick("#about", e)}
-        className={activeNav === "#about" ? "active" : ""}
-      >
+      <a href="#about" onClick={(e) => handleNavClick("#about", e)} className={activeNav === "#about" ? "active" : ""}>
         <AiOutlineUser />
       </a>
-      <a
-        href="#experience"
-        onClick={(e) => handleNavClick("#experience", e)}
-        className={activeNav === "#experience" ? "active" : ""}
-      >
+      <a href="#experience" onClick={(e) => handleNavClick("#experience", e)} className={activeNav === "#experience" ? "active" : ""}>
         <BiBook />
       </a>
-      <a
-        href="#services"
-        onClick={(e) => handleNavClick("#services", e)}
-        className={activeNav === "#services" ? "active" : ""}
-      >
+      <a href="#services" onClick={(e) => handleNavClick("#services", e)} className={activeNav === "#services" ? "active" : ""}>
         <RiServiceLine />
       </a>
-      <a
-        href="#contact"
-        onClick={(e) => handleNavClick("#contact", e)}
-        className={activeNav === "#contact" ? "active" : ""}
-      >
+      <a href="#contact" onClick={(e) => handleNavClick("#contact", e)} className={activeNav === "#contact" ? "active" : ""}>
         <BiMessageSquareDetail />
       </a>
     </nav>
