@@ -40,6 +40,6 @@ nav {
     box-shadow: none;
   }
   
-  nav a:hover{
+  nav a:visited{
     color: var(--color-light);
   }
