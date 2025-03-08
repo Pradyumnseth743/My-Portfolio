@@ -7,8 +7,8 @@
   }
   
   header {
-    min-height: 100vh; /* Ensures it fits the screen without extra space */
-    padding-top: 3rem;
+        min-height: 100dvh; /* Uses the actual visible height */
+        padding-top: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centers content properly */
