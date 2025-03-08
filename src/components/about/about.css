@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: 35% 50%;
     gap: 15%;
-    padding-top: 2rem; /* Extra spacing if needed */
+    padding-top: 1rem; /* Extra spacing if needed */
 }
 
 
