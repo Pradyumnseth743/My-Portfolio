@@ -1,87 +1,77 @@
+/* Reset default styles */
 * {
     text-decoration: none;
-  }
-  
-  a, a:link, a:visited {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
     text-decoration: none !important;
-  }
-  
-  header {
-    min-height: 100vh; 
-    height: 100svh;
-        display: flex;
+}
+
+/* Header Styling */
+header {
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0;
-    margin: 0;
+    text-align: center;
+    padding: 0 1rem;
+    background: var(--background-color, #f4f4f4);
 }
 
-
 .header__container {
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
     position: relative;
 }
 
-
-
-
-/* ================HEADER SOCIALS================= */
-.header__socials{
-    display:flex;
+/* Header Socials */
+.header__socials {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.8rem;
-    position:absolute;
-    left: 0;
+    position: absolute;
+    left: 1rem;
     bottom: 3rem;
 }
 
-.header__socials::after{
+.header__socials::after {
     content: "";
     width: 1px;
     height: 2rem;
-    background:var(--color-primary);
-} 
-
-
-
-
-
-/* /===============CTA================/ */
-
-.cta{
-    margin-top: 2.5rem;
-    display: flex;
-    gap: 1.2rem;
-    justify-content: center;
+    background: var(--color-primary, #000);
 }
 
+/* Call-to-Action Buttons */
+.cta {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
-
-/* /=============== Me image ================/ */
-
+/* Profile Image */
 .me {
-    position: relative; /* Removes absolute positioning issues */
-    margin: 4rem auto 0 auto; /* Centers it dynamically */
-    display: block;
-    width: 22rem;
-    height: 434px;
-    background: linear-gradient(var(--color-primary), transparent);
-    border-radius: 12rem 12rem 0 0;
+    position: relative;
+    margin: 3rem auto 0 auto;
+    width: 100%;
+    max-width: 22rem;
+    height: auto;
+    aspect-ratio: 1 / 1.2;
+    background: linear-gradient(var(--color-primary, #000), transparent);
+    border-radius: 50% 50% 0 0;
     overflow: hidden;
 }
 
-
-/* /=============== scroll down ================/ */
-
-.scroll__down{
+/* Scroll Down Indicator */
+.scroll__down {
     position: absolute;
     right: -2.3rem;
     bottom: 5rem;
@@ -90,48 +80,41 @@
     font-size: 0.9rem;
 }
 
+/* Responsive Adjustments */
+@media screen and (max-width: 1280px) {
+    header {
+        height: 80vh;
+    }
+}
 
+@media screen and (max-width: 1024px) {
+    header {
+        height: 100dvh;
+    }
+}
 
+@media screen and (max-width: 768px) {
+    .me {
+        max-width: 18rem;
+    }
+}
 
-/* /=================Media queries (medium devices) ====================/ */
-@media screen and (max-width: 1024px){
-    header{
+@media screen and (max-width: 600px) {
+    header {
         min-height: 100dvh;
     }
-}
-
-@media screen and (max-width: 1280px){
-    header{
-        height: 70vh;
-    }
-    /* .me{
-        height: 30rem;
-    } */
-    /* #main{
-        height:max-content;
-    } */
-}
-
-/* /=================Media queries (small devices) ====================/ */
-@media screen and (max-width: 600px){
-    header{
-        min-height: 100dvh; /* Same fix for small screens */
-    }
     .header__socials, 
-    .scroll__down{
+    .scroll__down {
         display: none;
     }
     .me {
-        width: 18rem; /* Smaller width on small screens */
-        height: 380px; /* Adjust height */
+        max-width: 16rem;
     }
 }
 
+/* Safari Compatibility */
 @supports (-webkit-touch-callout: none) {
     header {
-        height: 100vh; /* Fallback for Safari */
+        height: 100vh;
     }
-}
-header {
-    outline: 2px solid red;
 }
