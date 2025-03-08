@@ -7,7 +7,6 @@ import { RiServiceLine } from "react-icons/ri";
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
   const isScrollingFromClick = useRef(false);
-  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -16,7 +15,6 @@ const Nav = () => {
       if (isScrollingFromClick.current) return;
 
       let current = "#";
-
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
@@ -25,7 +23,6 @@ const Nav = () => {
           current = `#${section.id}`;
         }
       });
-
       setActiveNav(current);
     };
 
@@ -38,29 +35,16 @@ const Nav = () => {
   const handleNavClick = (id, e) => {
     e.preventDefault();
     isScrollingFromClick.current = true;
-    setActiveNav(id);
-    scrollPositionRef.current = window.scrollY; // Store initial scroll position
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
 
-    const checkScrollEnd = () => {
-      requestAnimationFrame(() => {
-        const currentScroll = window.scrollY;
-        const scrollDifference = Math.abs(currentScroll - scrollPositionRef.current);
-
-        if (scrollDifference <= 5) { // Adjust threshold as needed
-          isScrollingFromClick.current = false;
-        } else {
-          scrollPositionRef.current = currentScroll;
-          checkScrollEnd(); // Continue checking
-        }
-      });
-    };
-
-    checkScrollEnd(); // Start checking for scroll end
+    setTimeout(() => {
+      setActiveNav(id);
+      isScrollingFromClick.current = false;
+    }, 500); // Delay ensures scrolling has settled
   };
 
   return (
