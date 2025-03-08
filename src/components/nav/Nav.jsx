@@ -30,14 +30,17 @@ const Nav = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("touchmove", handleScroll); // Fix for mobile scroll detection
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchmove", handleScroll);
     };
   }, []);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    isScrollingFromClick.current = true; // Temporarily disable auto-scroll updates
+    isScrollingFromClick.current = true;
 
     setActiveNav(id);
     window.scrollTo({
@@ -45,12 +48,21 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    // Clear previous timeout and set a new one
+    // Detect when scrolling stops dynamically
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-    timeoutRef.current = setTimeout(() => {
-      isScrollingFromClick.current = false; // Re-enable scroll detection
-    }, 500); // Adjust based on scrolling duration
+    const detectScrollStop = () => {
+      const initialScroll = window.scrollY;
+      setTimeout(() => {
+        if (window.scrollY === initialScroll) {
+          isScrollingFromClick.current = false; // Re-enable scroll-based updates
+        } else {
+          detectScrollStop(); // Keep checking if still scrolling
+        }
+      }, 200); // Adjust for mobile scrolling inertia
+    };
+
+    detectScrollStop();
   };
 
   return (
