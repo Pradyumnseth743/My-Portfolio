@@ -7,14 +7,16 @@ import { RiServiceLine } from "react-icons/ri";
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
   const isScrollingFromClick = useRef(false);
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isScrollingFromClick.current) return;
+      if (isScrollingFromClick.current) return; // Prevent auto-scroll update during manual navigation
 
       let current = "#";
+
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
@@ -23,6 +25,7 @@ const Nav = () => {
           current = `#${section.id}`;
         }
       });
+
       setActiveNav(current);
     };
 
@@ -34,30 +37,20 @@ const Nav = () => {
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    isScrollingFromClick.current = true;
+    isScrollingFromClick.current = true; // Disable auto-update
 
+    setActiveNav(id);
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
 
-    const checkScrollEnd = () => {
-      setTimeout(() => {
-        const section = document.querySelector(id);
-        if (section) {
-          const sectionTop = section.offsetTop - 80;
-          const sectionBottom = sectionTop + section.clientHeight;
-          const scrollY = window.scrollY;
-
-          if (scrollY >= sectionTop && scrollY < sectionBottom) {
-            setActiveNav(id);
-          }
-        }
-        isScrollingFromClick.current = false;
-      }, 300);
-    };
-
-    checkScrollEnd();
+    // Wait for smooth scrolling to finish, then re-enable auto-update
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    
+    timeoutRef.current = setTimeout(() => {
+      isScrollingFromClick.current = false;
+    }, 500); // Adjust delay based on scrolling behavior
   };
 
   return (
