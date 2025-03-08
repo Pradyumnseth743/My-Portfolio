@@ -17,11 +17,15 @@
 }
 
 
-.header__container{
+.header__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    height: 100%;
     position: relative;
 }
+
 
 
 
@@ -60,21 +64,16 @@
 
 /* /=============== Me image ================/ */
 
-.me{
-    background: linear-gradient(var(--color-primary),transparent);
+.me {
+    position: relative; /* Removes absolute positioning issues */
+    margin: 4rem auto 0 auto; /* Centers it dynamically */
+    display: block;
     width: 22rem;
-    /* height: 30rem; */
     height: 434px;
-    position: absolute;
-    left: calc(50% - 11rem);
-    margin-top: 4rem;
+    background: linear-gradient(var(--color-primary), transparent);
     border-radius: 12rem 12rem 0 0;
     overflow: hidden;
-    /* padding: 4rem 1.5rem 1.5rem 1.5rem; */
-    padding: 3rem 0 0 0;
-    
 }
-
 
 
 /* /=============== scroll down ================/ */
@@ -119,4 +118,9 @@
     .scroll__down{
         display: none;
     }
+    .me {
+        width: 18rem; /* Smaller width on small screens */
+        height: 380px; /* Adjust height */
+    }
 }
+
