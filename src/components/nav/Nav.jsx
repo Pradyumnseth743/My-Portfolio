@@ -6,13 +6,13 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [manualScroll, setManualScroll] = useState(false);
+  const [clickLock, setClickLock] = useState(false); // Click Lock Mechanism
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    
+
     const handleScroll = () => {
-      if (manualScroll) return;
+      if (clickLock) return; // Click ke baad turant scroll update nahi hoga
 
       let currentSection = "#";
 
@@ -30,19 +30,19 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [manualScroll]);
+  }, [clickLock]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
     setActiveNav(id);
-    setManualScroll(true);
+    setClickLock(true); // Scroll disable temporarily
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
 
-    setTimeout(() => setManualScroll(false), 800);
+    setTimeout(() => setClickLock(false), 1500); // 1.5 sec baad scroll active hoga
   };
 
   return (
