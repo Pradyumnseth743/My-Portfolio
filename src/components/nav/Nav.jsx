@@ -7,13 +7,12 @@ import { RiServiceLine } from "react-icons/ri";
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
   const isScrollingFromClick = useRef(false);
-  const scrollTimeoutRef = useRef(null);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isScrollingFromClick.current) return; // Ignore auto-updates during manual clicks
+      if (isScrollingFromClick.current) return;
 
       let current = "#";
 
@@ -29,39 +28,25 @@ const Nav = () => {
       setActiveNav(current);
     };
 
-    const detectScrollStop = () => {
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => {
-        isScrollingFromClick.current = false; // Re-enable auto-scrolling updates after 300ms
-      }, 300);
-    };
-
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("touchmove", handleScroll);
-    window.addEventListener("scroll", detectScrollStop); // Detect when scrolling stops
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("touchmove", handleScroll);
-      window.removeEventListener("scroll", detectScrollStop);
     };
   }, []);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    isScrollingFromClick.current = true; // Temporarily disable auto-scroll detection
-
+    isScrollingFromClick.current = true;
     setActiveNav(id);
+
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
 
-    // Ensure scrolling detection resumes after a delay
-    if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    scrollTimeoutRef.current = setTimeout(() => {
-      isScrollingFromClick.current = false;
-    }, 600); // Wait for smooth scroll to finish
+    setTimeout(() => {
+      isScrollingFromClick.current = false; // Allow scrolling event to take over after navigation
+    }, 500); // Adjust time if needed
   };
 
   return (
