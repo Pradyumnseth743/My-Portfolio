@@ -6,47 +6,37 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [manualClick, setManualClick] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (manualClick) return; // Prevent scroll from overriding clicked nav
-
-      let currentSection = "#";
+      let current = "#";
 
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = `#${section.id}`;
+          current = `#${section.id}`;
         }
       });
 
-      setActiveNav(currentSection);
+      setActiveNav(current);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [manualClick]);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setManualClick(true);
-    setActiveNav(id);
+    setActiveNav(id); // Update active tab immediately
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
-
-    setTimeout(() => {
-      setManualClick(false); // Allow scrolling to update again
-    }, 800); // Adjust timeout based on scroll speed
   };
 
   return (
