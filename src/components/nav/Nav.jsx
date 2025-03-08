@@ -6,31 +6,31 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isManualClick, setIsManualClick] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
-    let scrollTimeout; // Debouncing ke liye
+    let scrollTimeout;
 
     const handleScroll = () => {
-      if (isManualClick) return; // Agar click se update ho raha hai toh ignore karo
+      if (isClicked) return; // Agar click se change ho raha hai toh ignore karo
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        let currentSection = "#";
+        let current = "#";
 
         sections.forEach((section) => {
           const sectionTop = section.offsetTop - 150;
           const sectionHeight = section.clientHeight;
 
           if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            currentSection = `#${section.id}`;
+            current = `#${section.id}`;
           }
         });
 
-        setActiveNav(currentSection);
-      }, 100); // 100ms debounce (smooth experience ke liye)
+        setActiveNav(current);
+      }, 100); // Smooth experience ke liye debounce
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -38,12 +38,12 @@ const Nav = () => {
       window.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
-  }, [isManualClick]);
+  }, [isClicked]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
+    setIsClicked(true);
     setActiveNav(id);
-    setIsManualClick(true);
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
@@ -51,7 +51,7 @@ const Nav = () => {
     });
 
     setTimeout(() => {
-      setIsManualClick(false); // Scroll update allow karega
+      setIsClicked(false); // Scroll sync enable karega
     }, 1000);
   };
 
