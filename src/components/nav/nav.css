@@ -20,7 +20,6 @@ nav {
     color: var(--color-light);
     transition: background 0.3s ease, color 0.3s ease;
     outline: none;
-    box-shadow: none;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
   }
@@ -38,6 +37,5 @@ nav {
   
   nav a:focus {
     outline: none;
-    box-shadow: none;
   }
   

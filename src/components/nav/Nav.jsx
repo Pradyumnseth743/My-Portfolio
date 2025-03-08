@@ -6,18 +6,15 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isClicked) return; // Click hone ke baad scroll Ignore
-
       let current = "#";
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 200;
+        const sectionTop = section.offsetTop - 200; 
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -30,22 +27,15 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isClicked]);
+  }, []);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
     setActiveNav(id);
-    setIsClicked(true);
-
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 100,
       behavior: "smooth",
     });
-
-    setTimeout(() => {
-      setIsClicked(false);
-      e.currentTarget.blur(); // Tap Shadow Remove
-    }, 1300); // Time increase for better experience
   };
 
   return (
