@@ -7,7 +7,7 @@
   }
   
 header{
-    height: 100vh;
+    height: 115vh;
     padding-top: 3rem;
     overflow: hidden;
 }
@@ -88,13 +88,13 @@ header{
 /* /=================Media queries (medium devices) ====================/ */
 @media screen and (max-width: 1024px){
     header{
-        height: 115vh;
+        height: 100vh;
     }
 }
 
 @media screen and (max-width: 1280px){
     header{
-        height: 115vh;
+        height: 100vh;
     }
     /* .me{
         height: 30rem;
@@ -107,7 +107,7 @@ header{
 /* /=================Media queries (small devices) ====================/ */
 @media screen and (max-width: 600px){
     header{
-        height: 115vh;
+        height: 100vh;
     }
     .header__socials, 
     .scroll__down{
