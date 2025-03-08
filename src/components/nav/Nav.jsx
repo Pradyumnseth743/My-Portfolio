@@ -49,19 +49,19 @@ const Nav = () => {
 
   return (
     <nav>
-      <a href="#" onClick={(e) => handleNavClick("#", e)} className={activeNav === "#" ? "active" : ""}>
+      <a href="#" onClick={(e) => handleNavClick("#", e)} className={activeNav === "#" ? "active" : ""} style={{ touchAction: "manipulation" }}>
         <AiOutlineHome />
       </a>
-      <a href="#about" onClick={(e) => handleNavClick("#about", e)} className={activeNav === "#about" ? "active" : ""}>
+      <a href="#about" onClick={(e) => handleNavClick("#about", e)} className={activeNav === "#about" ? "active" : ""} style={{ touchAction: "manipulation" }}>
         <AiOutlineUser />
       </a>
-      <a href="#experience" onClick={(e) => handleNavClick("#experience", e)} className={activeNav === "#experience" ? "active" : ""}>
+      <a href="#experience" onClick={(e) => handleNavClick("#experience", e)} className={activeNav === "#experience" ? "active" : ""} style={{ touchAction: "manipulation" }}>
         <BiBook />
       </a>
-      <a href="#services" onClick={(e) => handleNavClick("#services", e)} className={activeNav === "#services" ? "active" : ""}>
+      <a href="#services" onClick={(e) => handleNavClick("#services", e)} className={activeNav === "#services" ? "active" : ""} style={{ touchAction: "manipulation" }}>
         <RiServiceLine />
       </a>
-      <a href="#contact" onClick={(e) => handleNavClick("#contact", e)} className={activeNav === "#contact" ? "active" : ""}>
+      <a href="#contact" onClick={(e) => handleNavClick("#contact", e)} className={activeNav === "#contact" ? "active" : ""} style={{ touchAction: "manipulation" }}>
         <BiMessageSquareDetail />
       </a>
     </nav>
