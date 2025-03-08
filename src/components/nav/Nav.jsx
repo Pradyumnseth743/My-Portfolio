@@ -6,34 +6,34 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isClicked, setIsClicked] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (isClicked) return; // Prevent auto-switch during smooth scrolling
 
-        let currentSection = "#";
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            currentSection = `#${entry.target.id}`;
-          }
-        });
+    const handleScroll = () => {
+      if (isScrolling) return; // Ignore if user clicked on tab
 
-        setActiveNav(currentSection);
-      },
-      { rootMargin: "-50% 0px -50% 0px", threshold: 0.1 }
-    );
+      let current = "#";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.clientHeight;
 
-    sections.forEach((section) => observer.observe(section));
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+          current = `#${section.id}`;
+        }
+      });
 
-    return () => observer.disconnect();
-  }, [isClicked]);
+      setActiveNav(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isScrolling]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setIsClicked(true);
+    setIsScrolling(true);
     setActiveNav(id);
 
     window.scrollTo({
@@ -41,37 +41,35 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    // Unlock scroll-based updates after transition finishes
-    setTimeout(() => {
-      setIsClicked(false);
-    }, 1000);
+    // Wait until scrolling is finished before enabling section sync
+    const checkIfScrolled = () => {
+      const section = id === "#" ? document.body : document.querySelector(id);
+      const sectionTop = section.offsetTop - 80;
+      
+      if (Math.abs(window.scrollY - sectionTop) < 5) { // Close enough to target
+        setIsScrolling(false);
+        window.removeEventListener("scroll", checkIfScrolled);
+      }
+    };
+
+    window.addEventListener("scroll", checkIfScrolled);
   };
 
   return (
     <nav>
-      <a href="#" 
-         onClick={(e) => handleNavClick("#", e)} 
-         className={activeNav === "#" ? "active" : ""}>
+      <a href="#" onClick={(e) => handleNavClick("#", e)} className={activeNav === "#" ? "active" : ""}>
         <AiOutlineHome />
       </a>
-      <a href="#about" 
-         onClick={(e) => handleNavClick("#about", e)} 
-         className={activeNav === "#about" ? "active" : ""}>
+      <a href="#about" onClick={(e) => handleNavClick("#about", e)} className={activeNav === "#about" ? "active" : ""}>
         <AiOutlineUser />
       </a>
-      <a href="#experience" 
-         onClick={(e) => handleNavClick("#experience", e)} 
-         className={activeNav === "#experience" ? "active" : ""}>
+      <a href="#experience" onClick={(e) => handleNavClick("#experience", e)} className={activeNav === "#experience" ? "active" : ""}>
         <BiBook />
       </a>
-      <a href="#services" 
-         onClick={(e) => handleNavClick("#services", e)} 
-         className={activeNav === "#services" ? "active" : ""}>
+      <a href="#services" onClick={(e) => handleNavClick("#services", e)} className={activeNav === "#services" ? "active" : ""}>
         <RiServiceLine />
       </a>
-      <a href="#contact" 
-         onClick={(e) => handleNavClick("#contact", e)} 
-         className={activeNav === "#contact" ? "active" : ""}>
+      <a href="#contact" onClick={(e) => handleNavClick("#contact", e)} className={activeNav === "#contact" ? "active" : ""}>
         <BiMessageSquareDetail />
       </a>
     </nav>
