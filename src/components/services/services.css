@@ -54,6 +54,7 @@
 span{color:var(--color-primary)}
 .service__list p{
     font-size: 1rem;
+    text-align: justify;
 }
 
 /* /=================Media queries (medium devices) ====================/ */
