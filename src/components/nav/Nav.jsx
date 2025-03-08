@@ -41,10 +41,23 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    setTimeout(() => {
-      setActiveNav(id);
-      isScrollingFromClick.current = false;
-    }, 500); // Delay ensures scrolling has settled
+    const checkScrollEnd = () => {
+      setTimeout(() => {
+        const section = document.querySelector(id);
+        if (section) {
+          const sectionTop = section.offsetTop - 80;
+          const sectionBottom = sectionTop + section.clientHeight;
+          const scrollY = window.scrollY;
+
+          if (scrollY >= sectionTop && scrollY < sectionBottom) {
+            setActiveNav(id);
+          }
+        }
+        isScrollingFromClick.current = false;
+      }, 300);
+    };
+
+    checkScrollEnd();
   };
 
   return (
