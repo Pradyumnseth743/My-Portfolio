@@ -24,11 +24,9 @@ nav {
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* nav a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 15px var(--color-primary);
-  } */
-  
+  nav a:hover{
+    color: var(--color-light);
+  }
   nav a.active {
     background: var(--color-primary);
     color: var(--color-bg);
@@ -40,6 +38,4 @@ nav {
     box-shadow: none;
   }
   
-  nav a:hover{
-    color: var(--color-light);
-  }
+  
