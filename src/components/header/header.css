@@ -110,7 +110,7 @@ header{
 /* /=================Media queries (small devices) ====================/ */
 @media screen and (max-width: 600px){
     header{
-        height: 50rem;
+        height: 53rem;
     }
     .header__socials, 
     .scroll__down{
