@@ -1,43 +1,36 @@
 nav {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 0.7rem 1.7rem;
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.8rem;
-    border-radius: 3rem;
-    backdrop-filter: blur(15px);
-    z-index: 10;
-  }
-
-  nav a {
-    padding: 0.9rem;
-    border-radius: 50%;
-    display: flex;
-    font-size: 1.1rem;
-    color: var(--color-light);
-    transition: background 0.3s ease, color 0.3s ease;
-    outline: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  nav a.active {
-    background: var(--color-primary);
-    color: var(--color-bg);
-    box-shadow: 0 0 20px var(--color-primary);
-  }
-
-
-   
-
-  nav a:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  
-   nav a:hover{
-    color: var(--color-light);
-  }
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.7rem 1.7rem;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.8rem;
+  border-radius: 3rem;
+  backdrop-filter: blur(15px);
+  z-index: 10;
+}
+nav a {
+  padding: 0.9rem;
+  border-radius: 50%;
+  display: flex;
+  font-size: 1.1rem;
+  color: var(--color-light);
+  transition: background 0.3s ease, color 0.3s ease;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+nav a.active {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  box-shadow: 0 0 20px var(--color-primary);
+}
+nav a:focus {
+  outline: none;
+  box-shadow: none;
+}
+ nav a:hover{
+  color: var(--color-light);
+}
