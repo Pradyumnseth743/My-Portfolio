@@ -12,7 +12,7 @@ const Nav = () => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isClicked) return; // Agar Click Hua Hai Toh Ignore Karo
+      if (isClicked) return; // Click hone ke baad scroll Ignore
 
       let current = "#";
 
@@ -44,8 +44,8 @@ const Nav = () => {
 
     setTimeout(() => {
       setIsClicked(false);
-      e.currentTarget.blur(); // Tap Shadow Hatao
-    }, 1000);
+      e.currentTarget.blur(); // Tap Shadow Remove
+    }, 1300); // Time increase for better experience
   };
 
   return (

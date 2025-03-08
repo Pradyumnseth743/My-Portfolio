@@ -27,12 +27,13 @@ nav {
   
   nav a:hover {
     background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px var(--color-primary);
   }
   
   nav a.active {
     background: var(--color-primary);
     color: var(--color-bg);
-    transition: background 0.3s ease;
+    box-shadow: 0 0 20px var(--color-primary);
   }
   
   nav a:focus {
