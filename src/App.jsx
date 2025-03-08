@@ -8,12 +8,14 @@ import Portfolio from './components/portfolio/Portfolio'
 import Testimonials from './components/testimonials/Testimonials'
 import Contact from './components/contact/Contact'
 import Footer from './components/footer/Footer'
+import ScrollToTop from "./components/scrollToTop/ScrollToTop";
 
 const App = () => {
   return (
     <>
     <Header/>
     <Nav/>
+    <ScrollToTop />
     <About/>
     <Experience/>
     <Services/>
