@@ -24,10 +24,10 @@ nav {
     -webkit-tap-highlight-color: transparent;
   }
   
-  nav a:hover {
+  /* nav a:hover {
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 15px var(--color-primary);
-  }
+  } */
   
   nav a.active {
     background: var(--color-primary);
