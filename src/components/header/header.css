@@ -89,13 +89,15 @@ header{
 /* /=================Media queries (medium devices) ====================/ */
 @media screen and (max-width: 1024px){
     header{
-        height: 80vh;
+        height: 100vh;
     }
 }
 
+
+
 @media screen and (max-width: 1280px){
     header{
-        height: 100vh;
+        height: 80vh;
     }
     /* .me{
         height: 30rem;
