@@ -5,7 +5,27 @@
   .container.testimonials__container {
     width: 50%;
     padding-bottom: 4rem;
+    overflow: hidden;  /* Prevent slides from overflowing */
   }
+  
+  .testimonial {
+    background: var(--color-bg-variant, #222); /* Ensure background is applied */
+    text-align: center;
+    padding: 2rem;
+    border-radius: 2rem;
+    user-select: none;
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Prevents layout shifting */
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensures slide takes full width */
+    box-sizing: border-box;
+  }
+  
   
   .client__avatar {
     width: 4rem;
@@ -14,14 +34,6 @@
     border-radius: 50%;
     margin: 0 auto 1rem;
     border: 0.4rem solid var(--color-primary-variant, #ff6b6b); /* Default color */
-  }
-  
-  .testimonial {
-    background: var(--color-bg-variant, #222); /* Default color */
-    text-align: center;
-    padding: 2rem;
-    border-radius: 2rem;
-    user-select: none;
   }
   
   .client__review {
@@ -34,6 +46,9 @@
   
   .swiper-pagination-clickable .swiper-pagination-bullet {
     background: var(--color-primary, #ff6b6b); /* Default color */
+  }
+  .swiper {
+    overflow: hidden !important;
   }
   
   /* Responsive Design */

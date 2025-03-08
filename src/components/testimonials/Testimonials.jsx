@@ -53,12 +53,14 @@ const Testimonials = () => {
       <h2>Expertise</h2>
 
       <Swiper
-        className="container testimonials__container"
-        modules={[Pagination]}
-        spaceBetween={40}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-      >
+  className="container testimonials__container"
+  modules={[Pagination]}
+  spaceBetween={20}  // Reduce space between slides
+  slidesPerView={1}  // Ensures only one slide is visible at a time
+  pagination={{ clickable: true }}
+  style={{ overflow: "hidden" }}  // Prevents overlap
+>
+
         {data.map(({ avatar, name, review }, index) => (
           <SwiperSlide key={index} className="testimonial">
             <div className="client__avatar">
