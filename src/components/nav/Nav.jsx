@@ -6,13 +6,13 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isScrollingManually, setIsScrollingManually] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isScrolling) return; // Ignore if user clicked on tab
+      if (isScrollingManually) return; // Skip if manually scrolling
 
       let current = "#";
       sections.forEach((section) => {
@@ -29,11 +29,11 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolling]);
+  }, [isScrollingManually]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setIsScrolling(true);
+    setIsScrollingManually(true);
     setActiveNav(id);
 
     window.scrollTo({
@@ -41,18 +41,19 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    // Wait until scrolling is finished before enabling section sync
-    const checkIfScrolled = () => {
+    const scrollEndCheck = () => {
       const section = id === "#" ? document.body : document.querySelector(id);
       const sectionTop = section.offsetTop - 80;
-      
-      if (Math.abs(window.scrollY - sectionTop) < 5) { // Close enough to target
-        setIsScrolling(false);
-        window.removeEventListener("scroll", checkIfScrolled);
+
+      if (Math.abs(window.scrollY - sectionTop) < 5) {
+        setIsScrollingManually(false);
+        window.removeEventListener("scroll", scrollEndCheck);
+      } else {
+        requestAnimationFrame(scrollEndCheck);
       }
     };
 
-    window.addEventListener("scroll", checkIfScrolled);
+    requestAnimationFrame(scrollEndCheck);
   };
 
   return (
