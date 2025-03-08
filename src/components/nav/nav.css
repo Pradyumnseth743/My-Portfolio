@@ -20,13 +20,12 @@ nav {
     color: var(--color-light);
     transition: background 0.3s ease, color 0.3s ease;
     outline: none;
-    -webkit-tap-highlight-color: transparent;
     user-select: none;
   }
   
   nav a:hover {
     background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px var(--color-primary);
+    box-shadow: 0 0 15px var(--color-primary);
   }
   
   nav a.active {
@@ -37,5 +36,6 @@ nav {
   
   nav a:focus {
     outline: none;
+    box-shadow: none;
   }
   
