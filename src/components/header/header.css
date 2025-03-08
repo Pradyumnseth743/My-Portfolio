@@ -7,22 +7,19 @@
   }
   
   header {
-        min-height: 100dvh; /* Uses the actual visible height */
-        min-height: 100vh; /* Fallback */
-        margin-top: 0;
-    padding-top: 0;
+    height: 100dvh; /* Ensures full screen height */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers content properly */
+    justify-content: center;
     align-items: center;
-    margin-bottom: 5rem; /* Uniform spacing below */
-       
-    
-    
+    padding: 0;
+    margin: 0;
 }
 
 
 .header__container {
+    margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,3 +126,8 @@
     }
 }
 
+@supports (-webkit-touch-callout: none) {
+    header {
+        height: 100vh; /* Fallback for Safari */
+    }
+}
