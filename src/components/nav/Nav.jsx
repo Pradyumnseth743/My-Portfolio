@@ -10,16 +10,19 @@ const Nav = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-
-    let observer = new IntersectionObserver(
+    
+    const observer = new IntersectionObserver(
       (entries) => {
-        if (isClicked) return; // Prevent updating while manually scrolling
+        if (isClicked) return; // Prevent auto-switch while manually scrolling
 
+        let currentSection = "#";
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveNav(`#${entry.target.id}`);
+            currentSection = `#${entry.target.id}`;
           }
         });
+
+        setActiveNav(currentSection);
       },
       { rootMargin: "-50% 0px -50% 0px", threshold: 0.1 }
     );
@@ -39,27 +42,37 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    // Ensure scroll event does not override manually clicked navigation
+    // Unlock scroll syncing after transition finishes
     setTimeout(() => {
       setIsClicked(false);
-    }, 1000); // Delay ensures sync after smooth scrolling
+    }, 1200);
   };
 
   return (
     <nav>
-      <a href="#" onClick={(e) => handleNavClick("#", e)} className={activeNav === "#" ? "active" : ""}>
+      <a href="#" 
+         onClick={(e) => handleNavClick("#", e)} 
+         className={activeNav === "#" ? "active" : ""}>
         <AiOutlineHome />
       </a>
-      <a href="#about" onClick={(e) => handleNavClick("#about", e)} className={activeNav === "#about" ? "active" : ""}>
+      <a href="#about" 
+         onClick={(e) => handleNavClick("#about", e)} 
+         className={activeNav === "#about" ? "active" : ""}>
         <AiOutlineUser />
       </a>
-      <a href="#experience" onClick={(e) => handleNavClick("#experience", e)} className={activeNav === "#experience" ? "active" : ""}>
+      <a href="#experience" 
+         onClick={(e) => handleNavClick("#experience", e)} 
+         className={activeNav === "#experience" ? "active" : ""}>
         <BiBook />
       </a>
-      <a href="#services" onClick={(e) => handleNavClick("#services", e)} className={activeNav === "#services" ? "active" : ""}>
+      <a href="#services" 
+         onClick={(e) => handleNavClick("#services", e)} 
+         className={activeNav === "#services" ? "active" : ""}>
         <RiServiceLine />
       </a>
-      <a href="#contact" onClick={(e) => handleNavClick("#contact", e)} className={activeNav === "#contact" ? "active" : ""}>
+      <a href="#contact" 
+         onClick={(e) => handleNavClick("#contact", e)} 
+         className={activeNav === "#contact" ? "active" : ""}>
         <BiMessageSquareDetail />
       </a>
     </nav>
