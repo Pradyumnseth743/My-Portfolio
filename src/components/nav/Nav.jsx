@@ -6,15 +6,16 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isScrollingManually, setIsScrollingManually] = useState(false);
+  const [userInteracted, setUserInteracted] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isScrollingManually) return; // Skip if manually scrolling
+      if (userInteracted) return; // Prevents overriding if user clicked
 
       let current = "#";
+
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
@@ -29,11 +30,11 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrollingManually]);
+  }, [userInteracted]); // Re-run when user interacts
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setIsScrollingManually(true);
+    setUserInteracted(true);
     setActiveNav(id);
 
     window.scrollTo({
@@ -41,19 +42,9 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    const scrollEndCheck = () => {
-      const section = id === "#" ? document.body : document.querySelector(id);
-      const sectionTop = section.offsetTop - 80;
-
-      if (Math.abs(window.scrollY - sectionTop) < 5) {
-        setIsScrollingManually(false);
-        window.removeEventListener("scroll", scrollEndCheck);
-      } else {
-        requestAnimationFrame(scrollEndCheck);
-      }
-    };
-
-    requestAnimationFrame(scrollEndCheck);
+    setTimeout(() => {
+      setUserInteracted(false); // Allow scroll sync again after animation
+    }, 1200);
   };
 
   return (
