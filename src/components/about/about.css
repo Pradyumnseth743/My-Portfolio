@@ -2,14 +2,17 @@
     text-decoration: none;
   }
   
-.about__container{
+  .about {
+    padding-top: 5rem; /* Ensures space above */
+    margin-top: 0; /* Removes any extra margin */
+}
+.about__container {
     display: grid;
     grid-template-columns: 35% 50%;
     gap: 15%;
+    padding-top: 2rem; /* Extra spacing if needed */
 }
-.about {
-    margin-top: 5rem; /* Add space above the About section */
-}
+
 
 .about__me{
     width: 100%;

@@ -6,12 +6,16 @@
     text-decoration: none !important;
   }
   
-header {
-    height: 100vh; /* Make it take full viewport height */
+  header {
+    min-height: 100vh; /* Ensures it fits the screen without extra space */
     padding-top: 3rem;
-    overflow: hidden;
-    margin-bottom: 5rem; /* Ensure uniform space below */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content properly */
+    align-items: center;
+    margin-bottom: 5rem; /* Uniform spacing below */
 }
+
 
 .header__container{
     text-align: center;
