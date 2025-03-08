@@ -19,7 +19,6 @@ header{
 }
 
 
-
 /* ================HEADER SOCIALS================= */
 .header__socials{
     display:flex;
@@ -39,9 +38,6 @@ header{
 } 
 
 
-
-
-
 /* /===============CTA================/ */
 
 .cta{
@@ -50,7 +46,6 @@ header{
     gap: 1.2rem;
     justify-content: center;
 }
-
 
 
 /* /=============== Me image ================/ */
@@ -71,7 +66,6 @@ header{
 }
 
 
-
 /* /=============== scroll down ================/ */
 
 .scroll__down{
@@ -82,8 +76,6 @@ header{
     font-weight: 300;
     font-size: 0.9rem;
 }
-
-
 
 
 /* /=================Media queries (medium devices) ====================/ */
@@ -112,7 +104,7 @@ header{
     header{
         height: 53rem;
     }
-    
+
     .header__socials, 
     .scroll__down{
         display: none;
