@@ -6,13 +6,14 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const isScrollingFromClick = useRef(false); // Use useRef
+  const isScrollingFromClick = useRef(false);
+  const scrollPositionRef = useRef(0);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isScrollingFromClick.current) return; // Ignore scroll if click-scroll is in progress
+      if (isScrollingFromClick.current) return;
 
       let current = "#";
 
@@ -36,20 +37,30 @@ const Nav = () => {
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    isScrollingFromClick.current = true; // Set to true
+    isScrollingFromClick.current = true;
     setActiveNav(id);
+    scrollPositionRef.current = window.scrollY; // Store initial scroll position
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
 
-    const handleScrollEnd = () => {
-      isScrollingFromClick.current = false; // Set to false when scroll ends
-      window.removeEventListener("scroll", handleScrollEnd);
+    const checkScrollEnd = () => {
+      requestAnimationFrame(() => {
+        const currentScroll = window.scrollY;
+        const scrollDifference = Math.abs(currentScroll - scrollPositionRef.current);
+
+        if (scrollDifference <= 5) { // Adjust threshold as needed
+          isScrollingFromClick.current = false;
+        } else {
+          scrollPositionRef.current = currentScroll;
+          checkScrollEnd(); // Continue checking
+        }
+      });
     };
 
-    window.addEventListener("scroll", handleScrollEnd); //set listener to turn off click scroll.
+    checkScrollEnd(); // Start checking for scroll end
   };
 
   return (
