@@ -10,11 +10,11 @@ const Nav = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-
+    
     let scrollTimeout;
 
     const handleScroll = () => {
-      if (isClicked) return; // Agar click se change ho raha hai toh ignore karo
+      if (isClicked) return; // Ignore scroll update if a tab was recently clicked
 
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
@@ -30,7 +30,7 @@ const Nav = () => {
         });
 
         setActiveNav(current);
-      }, 100); // Smooth experience ke liye debounce
+      }, 150); // Slightly higher debounce delay for smoother updates
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -50,9 +50,10 @@ const Nav = () => {
       behavior: "smooth",
     });
 
+    // Prevent scroll event from overriding activeNav too soon
     setTimeout(() => {
-      setIsClicked(false); // Scroll sync enable karega
-    }, 1000);
+      setIsClicked(false);
+    }, 1200); // Increased delay ensures sync after smooth scrolling
   };
 
   return (
