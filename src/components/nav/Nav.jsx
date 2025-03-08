@@ -6,35 +6,37 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [userInteracted, setUserInteracted] = useState(false);
+  const [manualClick, setManualClick] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (userInteracted) return; // Prevents overriding if user clicked
+      if (manualClick) return; // Prevent scroll from overriding clicked nav
 
-      let current = "#";
+      let currentSection = "#";
 
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          current = `#${section.id}`;
+          currentSection = `#${section.id}`;
         }
       });
 
-      setActiveNav(current);
+      setActiveNav(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [userInteracted]); // Re-run when user interacts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [manualClick]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setUserInteracted(true);
+    setManualClick(true);
     setActiveNav(id);
 
     window.scrollTo({
@@ -43,8 +45,8 @@ const Nav = () => {
     });
 
     setTimeout(() => {
-      setUserInteracted(false); // Allow scroll sync again after animation
-    }, 1200);
+      setManualClick(false); // Allow scrolling to update again
+    }, 800); // Adjust timeout based on scroll speed
   };
 
   return (
