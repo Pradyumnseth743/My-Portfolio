@@ -4,12 +4,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 .container.testimonials__container {
     width: 50%;
     padding-bottom: 4rem;
 }
-
 .client__avatar {
     width: 5rem;
     aspect-ratio: 1/1;
@@ -18,14 +16,12 @@
     margin: 0 auto 1rem;
     border: 0.4rem solid var(--color-primary-variant);
 }
-
 .client__avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
 }
-
 .testimonial {
     background: var(--color-bg-variant);
     text-align: center;
@@ -34,11 +30,9 @@
     user-select: none;
     transition: transform 0.3s ease-in-out;
 }
-
 .testimonial:hover {
     transform: translateY(-5px);
 }
-
 .client__review {
     color: var(--color-light);
     font-weight: 300;
@@ -48,7 +42,6 @@
     text-align: center;
     font-size: 1rem;
 }
-
 .swiper-pagination-clickable .swiper-pagination-bullet {
     background: var(--color-primary);
 }
