@@ -6,36 +6,44 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isManualClick, setIsManualClick] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
+    let scrollTimeout; // Debouncing ke liye
+
     const handleScroll = () => {
-      if (isScrolling) return; // Agar click se update ho raha hai toh ignore karo
+      if (isManualClick) return; // Agar click se update ho raha hai toh ignore karo
 
-      let currentSection = "#";
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        let currentSection = "#";
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.clientHeight;
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 150;
+          const sectionHeight = section.clientHeight;
 
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          currentSection = `#${section.id}`;
-        }
-      });
+          if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSection = `#${section.id}`;
+          }
+        });
 
-      setActiveNav(currentSection);
+        setActiveNav(currentSection);
+      }, 100); // 100ms debounce (smooth experience ke liye)
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolling]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [isManualClick]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
     setActiveNav(id);
-    setIsScrolling(true);
+    setIsManualClick(true);
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
@@ -43,8 +51,8 @@ const Nav = () => {
     });
 
     setTimeout(() => {
-      setIsScrolling(false); // Scroll update allow karega
-    }, 500);
+      setIsManualClick(false); // Scroll update allow karega
+    }, 1000);
   };
 
   return (
