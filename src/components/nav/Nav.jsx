@@ -6,35 +6,35 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [isUserClicking, setIsUserClicking] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isScrolling) return; // If clicking, ignore scroll
+      if (isUserClicking) return; // Ignore scroll while clicking
 
-      let current = "#";
+      let currentSection = "#";
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 200;
+        const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
 
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          current = `#${section.id}`;
+          currentSection = `#${section.id}`;
         }
       });
 
-      setActiveNav(current);
+      setActiveNav(currentSection);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isScrolling]);
+  }, [isUserClicking]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setIsScrolling(true); // Disable scrolling update
+    setIsUserClicking(true);
     setActiveNav(id);
 
     window.scrollTo({
@@ -43,8 +43,8 @@ const Nav = () => {
     });
 
     setTimeout(() => {
-      setIsScrolling(false); // Re-enable scrolling update
-    }, 1100); // Wait till scroll completes
+      setIsUserClicking(false); // Allow scroll update after animation
+    }, 800);
   };
 
   return (
