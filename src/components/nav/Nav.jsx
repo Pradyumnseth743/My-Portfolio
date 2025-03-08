@@ -10,10 +10,9 @@ const Nav = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    
     const observer = new IntersectionObserver(
       (entries) => {
-        if (isClicked) return; // Prevent auto-switch while manually scrolling
+        if (isClicked) return; // Prevent auto-switch during smooth scrolling
 
         let currentSection = "#";
         entries.forEach((entry) => {
@@ -42,10 +41,10 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    // Unlock scroll syncing after transition finishes
+    // Unlock scroll-based updates after transition finishes
     setTimeout(() => {
       setIsClicked(false);
-    }, 1200);
+    }, 1000);
   };
 
   return (
