@@ -8,7 +8,7 @@
   
 header{
     height: 115vh;
-    
+
     padding-top: 3rem;
     overflow: hidden;
 }
@@ -110,7 +110,7 @@ header{
 /* /=================Media queries (small devices) ====================/ */
 @media screen and (max-width: 600px){
     header{
-        height: 100vh;
+        height: 115vh;
     }
     .header__socials, 
     .scroll__down{
