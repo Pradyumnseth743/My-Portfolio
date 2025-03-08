@@ -6,13 +6,15 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
+  const [scrollingByClick, setScrollingByClick] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      let current = "#";
+      if (scrollingByClick) return; // Ignore auto scroll updates if user clicked
 
+      let current = "#";
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
@@ -27,16 +29,30 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [scrollingByClick]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setActiveNav(id); // Update active tab immediately
+    setActiveNav(id);
+    setScrollingByClick(true);
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
+
+    const checkIfScrollFinished = () => {
+      const section = id === "#" ? document.body : document.querySelector(id);
+      const sectionTop = section.offsetTop - 80;
+
+      if (Math.abs(window.scrollY - sectionTop) < 5) {
+        setScrollingByClick(false);
+        return;
+      }
+      requestAnimationFrame(checkIfScrollFinished);
+    };
+
+    requestAnimationFrame(checkIfScrollFinished);
   };
 
   return (
