@@ -10,34 +10,23 @@ const Nav = () => {
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    
-    let scrollTimeout;
 
-    const handleScroll = () => {
-      if (isClicked) return; // Ignore scroll update if a tab was recently clicked
+    let observer = new IntersectionObserver(
+      (entries) => {
+        if (isClicked) return; // Prevent updating while manually scrolling
 
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        let current = "#";
-
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop - 150;
-          const sectionHeight = section.clientHeight;
-
-          if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            current = `#${section.id}`;
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveNav(`#${entry.target.id}`);
           }
         });
+      },
+      { rootMargin: "-50% 0px -50% 0px", threshold: 0.1 }
+    );
 
-        setActiveNav(current);
-      }, 150); // Slightly higher debounce delay for smoother updates
-    };
+    sections.forEach((section) => observer.observe(section));
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearTimeout(scrollTimeout);
-    };
+    return () => observer.disconnect();
   }, [isClicked]);
 
   const handleNavClick = (id, e) => {
@@ -50,10 +39,10 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    // Prevent scroll event from overriding activeNav too soon
+    // Ensure scroll event does not override manually clicked navigation
     setTimeout(() => {
       setIsClicked(false);
-    }, 1200); // Increased delay ensures sync after smooth scrolling
+    }, 1000); // Delay ensures sync after smooth scrolling
   };
 
   return (
