@@ -13,18 +13,16 @@ nav {
   }
   
   nav a {
-    background: transparent;
     padding: 0.9rem;
     border-radius: 50%;
     display: flex;
     font-size: 1.1rem;
     color: var(--color-light);
-    -webkit-tap-highlight-color: transparent;
     transition: background 0.3s ease, color 0.3s ease;
     outline: none;
-  box-shadow: none;
-  user-select: none; /* Text Select Na Ho */
-
+    box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
   }
   
   nav a:hover {
@@ -37,12 +35,8 @@ nav {
     transition: background 0.3s ease;
   }
   
- 
   nav a:focus {
-    outline: none; /* Remove default browser focus */
+    outline: none;
+    box-shadow: none;
   }
-  nav a:hover {
-    box-shadow: 0 0 15px var(--color-primary);
-    transition: box-shadow 0.3s ease;
-  }
-      
+  
