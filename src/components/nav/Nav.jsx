@@ -6,13 +6,13 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [manualClick, setManualClick] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (manualClick) return; // Agar click se change hua hai toh ignore karo
+      if (isScrolling) return; // Agar click se update ho raha hai toh ignore karo
 
       let currentSection = "#";
 
@@ -30,12 +30,12 @@ const Nav = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [manualClick]);
+  }, [isScrolling]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    setManualClick(true);
     setActiveNav(id);
+    setIsScrolling(true);
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
@@ -43,8 +43,8 @@ const Nav = () => {
     });
 
     setTimeout(() => {
-      setManualClick(false); // Scroll update wapas allow karega
-    }, 500); // 0.5 sec me reset hoga
+      setIsScrolling(false); // Scroll update allow karega
+    }, 500);
   };
 
   return (
