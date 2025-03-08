@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./nav.css";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import { BiBook, BiMessageSquareDetail } from "react-icons/bi";
@@ -6,15 +6,14 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const isScrolling = useRef(false);
+  const [isManualClick, setIsManualClick] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    let scrollTimeout;
 
     const handleScroll = () => {
-      if (isScrolling.current) return;
-
+      if (isManualClick) return;
+      
       let current = "#";
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
@@ -24,34 +23,28 @@ const Nav = () => {
           current = `#${section.id}`;
         }
       });
-
       setActiveNav(current);
     };
 
-    const handleScrollEnd = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        isScrolling.current = false;
-      }, 200);
-    };
-
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("scroll", handleScrollEnd);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("scroll", handleScrollEnd);
     };
-  }, []);
+  }, [isManualClick]);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    isScrolling.current = true;
+    setIsManualClick(true);
     setActiveNav(id);
-    
-    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+
+    window.scrollTo({
+      top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
+      behavior: "smooth",
+    });
+
     setTimeout(() => {
-      isScrolling.current = false;
-    }, 800); // Delay for smooth scroll to complete
+      setIsManualClick(false);
+    }, 1000); // Allow smooth scrolling to complete before enabling auto-detection
   };
 
   return (
