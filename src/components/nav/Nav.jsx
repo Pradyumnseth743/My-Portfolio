@@ -6,17 +6,16 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const isScrollingFromClick = useRef(false);
-  const scrollTimeout = useRef(null);
+  const isScrolling = useRef(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
+    let scrollTimeout;
 
     const handleScroll = () => {
-      if (isScrollingFromClick.current) return;
+      if (isScrolling.current) return;
 
       let current = "#";
-
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
@@ -29,30 +28,30 @@ const Nav = () => {
       setActiveNav(current);
     };
 
+    const handleScrollEnd = () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        isScrolling.current = false;
+      }, 200);
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollEnd);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScrollEnd);
     };
   }, []);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    isScrollingFromClick.current = true;
+    isScrolling.current = true;
     setActiveNav(id);
-
-    window.scrollTo({
-      top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
-      behavior: "smooth",
-    });
-
-    // Remove focus from clicked element to prevent sticky tap highlight
-    e.target.blur();
-
-    // Reset scrolling flag after scrolling stops
-    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-    scrollTimeout.current = setTimeout(() => {
-      isScrollingFromClick.current = false;
-    }, 600); // Adjust timeout based on scroll speed
+    
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+      isScrolling.current = false;
+    }, 800); // Delay for smooth scroll to complete
   };
 
   return (
