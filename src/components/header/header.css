@@ -8,12 +8,13 @@
   
   header {
     min-height: 100vh; /* Ensures it fits the screen without extra space */
-    padding-top: 3rem;
+    padding-top: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centers content properly */
     align-items: center;
-    margin-bottom: 5rem; /* Uniform spacing below */
+    margin-bottom: 0px; /* Uniform spacing below */
+    margin-top: 0px;
 }
 
 
