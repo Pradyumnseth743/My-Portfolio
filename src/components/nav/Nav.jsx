@@ -13,7 +13,7 @@ const Nav = () => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (isScrollingFromClick.current) return; // Prevent auto-scroll update during manual navigation
+      if (isScrollingFromClick.current) return; // Prevent auto-update during smooth scrolling
 
       let current = "#";
 
@@ -37,7 +37,7 @@ const Nav = () => {
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
-    isScrollingFromClick.current = true; // Disable auto-update
+    isScrollingFromClick.current = true; // Temporarily disable auto-scroll updates
 
     setActiveNav(id);
     window.scrollTo({
@@ -45,12 +45,12 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    // Wait for smooth scrolling to finish, then re-enable auto-update
+    // Clear previous timeout and set a new one
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    
+
     timeoutRef.current = setTimeout(() => {
-      isScrollingFromClick.current = false;
-    }, 500); // Adjust delay based on scrolling behavior
+      isScrollingFromClick.current = false; // Re-enable scroll detection
+    }, 500); // Adjust based on scrolling duration
   };
 
   return (
