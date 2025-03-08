@@ -7,6 +7,7 @@ import { RiServiceLine } from "react-icons/ri";
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
   const isScrollingFromClick = useRef(false);
+  const scrollTimeout = useRef(null);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -44,9 +45,14 @@ const Nav = () => {
       behavior: "smooth",
     });
 
-    setTimeout(() => {
-      isScrollingFromClick.current = false; // Allow scrolling event to take over after navigation
-    }, 500); // Adjust time if needed
+    // Remove focus from clicked element to prevent sticky tap highlight
+    e.target.blur();
+
+    // Reset scrolling flag after scrolling stops
+    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    scrollTimeout.current = setTimeout(() => {
+      isScrollingFromClick.current = false;
+    }, 600); // Adjust timeout based on scroll speed
   };
 
   return (
