@@ -70,7 +70,7 @@ const Testimonials = () => {
               <img src={avatar} alt={name} />
             </div>
             <h5 className="client__name">{name}</h5>
-            <small className="client__review">{review}</small>
+            <small style={{textAlign:"justify"}}className="client__review">{review}</small>
           </SwiperSlide>
         ))}
       </Swiper>
