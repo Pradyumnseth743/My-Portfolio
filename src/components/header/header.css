@@ -112,6 +112,7 @@ header{
     header{
         height: 53rem;
     }
+    
     .header__socials, 
     .scroll__down{
         display: none;
