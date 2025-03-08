@@ -24,7 +24,7 @@ const data = [
     avatar: AVTR2,
     name: "UI/UX Designer & Developer",
     review:
-      "Embark on a user-centered design journey with my UI/UX freelancing services. As a passionate designer and developer, I specialize in crafting seamless, intuitive interfaces that prioritize user experience."
+      "Embark on a user-centered design journey with my UI/UX freelancing services. As a passionate designer and developer, I specialize in crafting seamless, intuitive interfaces that prioritize user experience. From wireframes to interactive prototypes, I am dedicated to creating digital experiences that resonate."
   },
   {
     avatar: AVTR3,
@@ -36,20 +36,20 @@ const data = [
     avatar: AVTR4,
     name: "Photo Editing",
     review:
-      "Unleash the power of visuals with my photo editing freelancing services. Whether it's retouching, color correction, or enhancing images, I transform your snapshots into captivating works of art."
+      "Unleash the power of visuals with my photo editing freelancing services. Whether it's retouching, color correction, or enhancing images, I am here to transform your snapshots into captivating works of art. With an eye for detail and a passion for perfection, I am dedicated to ensuring your images stand out and tell a compelling story."
   },
   {
     avatar: AVTR5,
     name: "Video Editing",
     review:
-      "Step into the world of storytelling through my video editing freelancing services. From raw footage to polished narratives, I specialize in transforming videos into engaging visual journeys."
+      "Step into the world of storytelling through my video editing freelancing services. From raw footage to polished narratives, I specialize in transforming videos into engaging visual journeys. Whether it's trimming, transitions, or adding that cinematic touch, I am committed to bringing your content to life."
   },
 ];
 
 const Testimonials = () => {
   return (
     <section style={{ marginTop: "4rem" }} id="testimonials">
-      <h5>Services Offer</h5>
+      <h5>Services Offered</h5>
       <h2>Expertise</h2>
 
       <Swiper
@@ -62,7 +62,7 @@ const Testimonials = () => {
         {data.map(({ avatar, name, review }, index) => (
           <SwiperSlide key={index} className="testimonial">
             <div className="client__avatar">
-              <img src={avatar} alt={`${name} Avatar`} />
+              <img src={avatar} alt={name} />
             </div>
             <h5 className="client__name">{name}</h5>
             <small className="client__review">{review}</small>

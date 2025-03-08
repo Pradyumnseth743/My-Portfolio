@@ -1,78 +1,57 @@
 * {
     text-decoration: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-.container.testimonials__container {
+  }
+  
+  .container.testimonials__container {
     width: 50%;
     padding-bottom: 4rem;
-}
-
-
-.client__avatar {
-    width: 5rem;
+  }
+  
+  .client__avatar {
+    width: 4rem;
     aspect-ratio: 1/1;
     overflow: hidden;
     border-radius: 50%;
     margin: 0 auto 1rem;
-    border: 0.4rem solid var(--color-primary-variant);
-}
-
-
-.client__avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-
-.testimonial {
-    background: var(--color-bg-variant);
+    border: 0.4rem solid var(--color-primary-variant, #ff6b6b); /* Default color */
+  }
+  
+  .testimonial {
+    background: var(--color-bg-variant, #222); /* Default color */
     text-align: center;
     padding: 2rem;
     border-radius: 2rem;
     user-select: none;
-    transition: transform 0.3s ease-in-out;
-}
-
-
-.testimonial:hover {
-    transform: translateY(-5px);
-}
-
-
-.client__review {
-    color: var(--color-light);
+  }
+  
+  .client__review {
+    color: var(--color-light, #ddd); /* Default color */
     font-weight: 300;
     display: block;
-    width: 90%;
+    width: 80%;
     margin: 0.8rem auto 0;
-    text-align: center;
-    font-size: 1rem;
-}
-
-
-.swiper-pagination-clickable .swiper-pagination-bullet {
-    background: var(--color-primary);
-}
-
-/* Medium Devices (Tablets) */
-@media screen and (max-width: 1024px) {
+  }
+  
+  .swiper-pagination-clickable .swiper-pagination-bullet {
+    background: var(--color-primary, #ff6b6b); /* Default color */
+  }
+  
+  /* Responsive Design */
+  
+  /* Medium Devices */
+  @media screen and (max-width: 1024px) {
     .container.testimonials__container {
-        width: 70%;
+      width: 70%;
     }
-}
-
-/* Small Devices (Phones) */
-@media screen and (max-width: 600px) {
+  }
+  
+  /* Small Devices */
+  @media screen and (max-width: 600px) {
     .container.testimonials__container {
-        width: 90%;
+      width: 90%;
     }
     .client__review {
-        width: 95%;
+      width: 90%;
     }
-}
+  }
+  
