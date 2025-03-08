@@ -8,13 +8,17 @@
   
   header {
         min-height: 100dvh; /* Uses the actual visible height */
-        padding-top: 3rem;
+        min-height: 100vh; /* Fallback */
+        margin-top: 0;
+    padding-top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centers content properly */
     align-items: center;
     margin-bottom: 5rem; /* Uniform spacing below */
-    margin-top: 0px;
+       
+    
+    
 }
 
 
@@ -94,7 +98,7 @@
 /* /=================Media queries (medium devices) ====================/ */
 @media screen and (max-width: 1024px){
     header{
-        height: 115vh;
+        min-height: 100dvh;
     }
 }
 
@@ -113,7 +117,7 @@
 /* /=================Media queries (small devices) ====================/ */
 @media screen and (max-width: 600px){
     header{
-        height: 115vh;
+        min-height: 100dvh; /* Same fix for small screens */
     }
     .header__socials, 
     .scroll__down{
