@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./nav.css";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import { BiBook, BiMessageSquareDetail } from "react-icons/bi";
@@ -6,15 +6,16 @@ import { RiServiceLine } from "react-icons/ri";
 
 const Nav = () => {
   const [activeNav, setActiveNav] = useState("#");
-  const [scrollingByClick, setScrollingByClick] = useState(false);
+  const isScrollingFromClick = useRef(false); // Use useRef
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
 
     const handleScroll = () => {
-      if (scrollingByClick) return; // Ignore auto scroll updates if user clicked
+      if (isScrollingFromClick.current) return; // Ignore scroll if click-scroll is in progress
 
       let current = "#";
+
       sections.forEach((section) => {
         const sectionTop = section.offsetTop - 150;
         const sectionHeight = section.clientHeight;
@@ -28,31 +29,27 @@ const Nav = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [scrollingByClick]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleNavClick = (id, e) => {
     e.preventDefault();
+    isScrollingFromClick.current = true; // Set to true
     setActiveNav(id);
-    setScrollingByClick(true);
 
     window.scrollTo({
       top: id === "#" ? 0 : document.querySelector(id).offsetTop - 80,
       behavior: "smooth",
     });
 
-    const checkIfScrollFinished = () => {
-      const section = id === "#" ? document.body : document.querySelector(id);
-      const sectionTop = section.offsetTop - 80;
-
-      if (Math.abs(window.scrollY - sectionTop) < 5) {
-        setScrollingByClick(false);
-        return;
-      }
-      requestAnimationFrame(checkIfScrollFinished);
+    const handleScrollEnd = () => {
+      isScrollingFromClick.current = false; // Set to false when scroll ends
+      window.removeEventListener("scroll", handleScrollEnd);
     };
 
-    requestAnimationFrame(checkIfScrollFinished);
+    window.addEventListener("scroll", handleScrollEnd); //set listener to turn off click scroll.
   };
 
   return (
