@@ -16,15 +16,15 @@ import "swiper/css/pagination";
 const data = [
   {
     avatar: AVTR1,
-    name: "Website Development",
+    name: "Website/Software Development",
     review:
-      "Hello, I'm Pradyumn Seth, a recent Full Stack Development Graduate with a passion for creating visually stunning websites and applications. I was fortunate enough to work with Milliman on Live projects, and I'm excited to share how the experience helped me gain practical knowledge and confidence in my skills.",
+      "Hello, I'm Pradyumn Seth, a recent Full Stack/Software Development Graduate with a passion for creating visually stunning websites and applications. I was fortunate enough to work with Milliman on Live projects and ZeMoSo Technologies, and I'm excited to share how the experience helped me gain practical knowledge and confidence in my skills.",
   },
   {
     avatar: AVTR2,
-    name: "UI/UX Designer & Developer",
+    name: "Data Analyst",
     review:
-      "Embark on a user-centered design journey with my UI/UX freelancing services. As a passionate designer and developer, I specialize in crafting seamless, intuitive interfaces that prioritize user experience. From wireframes to interactive prototypes, I am dedicated to creating digital experiences that resonate.",
+      "Passionate Data Analyst with expertise in transforming raw data into actionable insights. Proficient in data visualization, statistical analysis, and SQL, with a strong foundation in Python and Excel. Experienced in problem-solving, trend analysis, and optimizing business decisions through data-driven strategies.",
   },
   {
     avatar: AVTR3,
@@ -34,15 +34,15 @@ const data = [
   },
   {
     avatar: AVTR4,
-    name: "Photo Editing",
+    name: "Content Creater",
     review:
-      "Unleash the power of visuals with my photo editing freelancing services. Whether it's retouching, color correction, or enhancing images, I am here to transform your snapshots into captivating works of art. With an eye for detail and a passion for perfection, I am dedicated to ensuring your images stand out and tell a compelling story.",
+      "Creative YouTube Video Content Creator with expertise in storytelling, video editing, and audience engagement. Skilled in scripting, filming, and post-production, delivering high-quality, engaging content. Passionate about crafting visually compelling videos that captivate and inspire viewers.",
   },
   {
     avatar: AVTR5,
-    name: "Video Editing",
+    name: "Football & Business Enthusiast",
     review:
-      "Step into the world of storytelling through my video editing freelancing services. From raw footage to polished narratives, I specialize in transforming videos into engaging visual journeys. Whether it's trimming, transitions, or adding that cinematic touch, I am committed to bringing your content to life.",
+      "Blending the strategic mindset of football with the corporate world—leveraging teamwork, adaptability, and data-driven decision-making to drive success both on the field and in business.",
   },
 ];
 
