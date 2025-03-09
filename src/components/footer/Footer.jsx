@@ -29,7 +29,7 @@ const Footer = () => {
       </div>
 
       <div className="footer__copyright">
-        <small style={{fontSize:'0.9rem'}}> &copy; Developed by <span style={{color:'yellow'}}>Pradyumn Seth</span>. All rights reserved.</small>
+        <small style={{fontSize:'0.9rem'}}> &copy; 2025 Developed by <span style={{color:'yellow'}}>Pradyumn Seth</span>. All rights reserved.</small>
       </div>
     </footer>
   )

@@ -16,7 +16,7 @@ import "swiper/css/pagination";
 const data = [
   {
     avatar: AVTR1,
-    name: "Website/Software Development",
+    name: "Website/Software Developer",
     review:
       "Hello, I'm Pradyumn Seth, a recent Full Stack/Software Development Graduate with a passion for creating visually stunning websites and applications. I was fortunate enough to work with Milliman on Live projects and ZeMoSo Technologies, and I'm excited to share how the experience helped me gain practical knowledge and confidence in my skills.",
   },
@@ -28,7 +28,7 @@ const data = [
   },
   {
     avatar: AVTR3,
-    name: "Graphic Designing",
+    name: "Graphic Designer",
     review:
       "Creating captivating visual identities through logo design, crafting eye-catching thumbnails, curating impactful social media posts, and designing captivating cover pages that leave a lasting impression.",
   },
