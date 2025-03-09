@@ -45,8 +45,8 @@ font-family: "Trebuchet MS" ,sans-serif;
 background: var(--color-bg);
 color: var(--color-white);
 line-height: 1.7;
-background-image: url(../src/assets/bg-texture.png);
-/* background-image: (https://satyamprajapati13.netlify.app/static/media/pngLf.ee543077e0338cc9a095.png); */
+/* background-image: url(../src/assets/bg-texture.png); */
+background-image: url(../src/assets/bg1.png);
 }
 
 /* =========== General Styles ============ */
